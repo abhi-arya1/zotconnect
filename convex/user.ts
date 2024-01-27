@@ -32,8 +32,12 @@ export const createStudent = mutation({
         {
             userId: args.userId,
             userType: args.userType,
-            bio: args.bio
-            
+            bio: args.bio,
+            name: args.name,
+            year: args.year,
+            major: args.major,
+            url: args.url,
+            skills: args.skills,
         });
 
         return document; 
@@ -62,8 +66,9 @@ export const createProf = mutation({
         {
             userId: args.userId,
             userType: args.userType,
-            bio: args.bio
-            
+            bio: args.bio,
+            name: args.name,
+            url: args.url,
         });
 
         return document; 
