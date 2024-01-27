@@ -8,7 +8,7 @@ import * as z from "zod"
 import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/signup_input";
 import { ModeToggle } from "@/components/mode_toggle";
-import { XCircle } from "lucide-react";
+import { CheckCircle, XCircle } from "lucide-react";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
@@ -25,6 +25,8 @@ const FormSchema = z.object({
 
 const SignupPages = () => {
     const createStudent = useMutation(api.user.createStudent)
+    const [urlPrompt, setUrlPrompt] = useState("");
+    const [majorPrompt, setMajorPrompt] = useState("");
 
     // USER DATA
     const { user } = useUser(); 
@@ -70,7 +72,7 @@ const SignupPages = () => {
     const selectedProf = () => {
         setUserType("PROF")
         setProfButtonDisable(false);
-        setStudentButtonDisable(true)
+        setStudentButtonDisable(true);
     }
 
     const handleBioFormSubmit = (formData: z.infer<typeof FormSchema>) => {
@@ -80,21 +82,21 @@ const SignupPages = () => {
        setBio(formData.bio)
     };
 
-    const handleMajorInterestSubmit = (type: string, value: string) => {
+    const handleMajorInterestSubmit = (value: string) => {
         toast({
-            title: `Saved ${type} as ${value}!`
+            title: `Saved as ${value}!`
           })
         setMajorInterest(value)
     };
 
-    const handleURLSubmit = (type: string, value: string) => {
+    const handleURLSubmit = (value: string) => {
         toast({
             title: `Saved URL: ${value}`
         })
         setUrl(value);
     }
 
-    const handleYearSubmit = (type: string, value: string) => {
+    const handleYearSubmit = (value: string) => {
         toast({
             title: `Set Graduation Year: ${value}`
         })
@@ -124,11 +126,11 @@ const SignupPages = () => {
 
             {/* BASIC INFORMATION */}
             <div className="flex flex-row pt-10">
-                <Button variant={studentButtonDisable ? "outline" : "default"} onClick={selectedStudent}>
+                <Button variant={studentButtonDisable ? "ghost" : "default"} className={studentButtonDisable ? "text-muted-foreground hover:bg-inherit hover:text-muted-foreground" : ""} onClick={studentButtonDisable ? () => {} : selectedStudent}>
                     Student
                 </Button>
                 <div className="pl-2 pb-5">
-                <Button variant={profButtonDisable ? "outline" : "default"} onClick={selectedProf}>
+                <Button variant={profButtonDisable ? "ghost" : "default"} className={profButtonDisable ? "text-muted-foreground hover:bg-inherit hover:text-muted-foreground" : ""} onClick={profButtonDisable ? () => {} : selectedProf}>
                     Professor
                 </Button>
                 </div>
@@ -153,7 +155,7 @@ const SignupPages = () => {
                         />
                         <InputWithButton
                             onInputSubmit={handleURLSubmit}
-                            placeholder="URL (e.g. LinkedIn, Portfolio, GitHub, etc)"
+                            placeholder="Add URL (e.g. LinkedIn, Research Site, etc)"
                             buttonName="Save"
                             onAddToList={(value: string) => {}}
                         />
@@ -166,7 +168,7 @@ const SignupPages = () => {
                         />
                         <div>
                             {studentSkills.length !== 0 ? (
-                                <div className="flex text-gray-200 dark:text-muted-foreground items-center justify-center pt-4">
+                                <div className="flex flex-wrap max-w-[400px] text-gray-200 dark:text-muted-foreground items-center justify-center pt-4">
                                     {studentSkills.map(skill => (
                                         <button key={skill} onClick={() => removeSkill(skill)} className="flex flex-row m-1 items-center bg-slate-600 p-2 pl-3 pr-3 rounded-lg">
                                         {skill} <XCircle className="pl-1 h-5 w-5" />
@@ -189,8 +191,8 @@ const SignupPages = () => {
                             onAddToList={(value: string) => {}}
                         />
                         <InputWithButton
-                            onInputSubmit={handleMajorInterestSubmit}
-                            placeholder="URL (e.g. LinkedIn, Research Site, etc)"
+                            onInputSubmit={handleURLSubmit}
+                            placeholder="Add URL (e.g. LinkedIn, Research Site, etc)"
                             buttonName="Save"
                             onAddToList={(value: string) => {}}
                         />
@@ -201,8 +203,8 @@ const SignupPages = () => {
             </div>
             
             <div className="pt-20">
-                <Button className="p-7 text-xl" onClick={onCreate}>
-                    Submit
+                <Button className="p-7 text-lg" onClick={onCreate}>
+                    Submit <CheckCircle className="pl-2" />
                 </Button>
             </div>
 

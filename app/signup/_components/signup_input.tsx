@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 interface InputWithButtonProps {
-  onInputSubmit: (type: string, value: string) => void;
+  onInputSubmit: (value: string) => void;
   onAddToList: (value: string) => void;
   placeholder: string; // Adding the placeholder prop
   buttonName: string;
@@ -26,17 +26,11 @@ export function InputWithButton({ onInputSubmit, placeholder, buttonName, clearI
 
   const handleSubmit = () => {
     if (onInputSubmit && inputValue !== '') {
-      if(placeholder === "Major (No Abbreviations)") {
-        onInputSubmit("Major", inputValue);
-        if(clearInputOnAdd) { setInputValue('') } 
-      } else if (placeholder === "URL (e.g. LinkedIn, Portfolio, GitHub, etc)") {
-        onInputSubmit("Interest/Field", inputValue);   
-        if(clearInputOnAdd) { setInputValue('') }     
-      } else if (placeholder === "Add Skills (Coding Languages, Research, etc)") {
+      if (placeholder === "Add Skills (Coding Languages, Research, etc)") {
         onAddToList(inputValue);
-        if(clearInputOnAdd) { setInputValue('') }    
+        if(clearInputOnAdd) { setInputValue('') }   
       } else {
-        onInputSubmit("GradYear", inputValue);
+        onInputSubmit(inputValue);
       }
     } else if (inputValue === '') {
       setPlaceholder('Please Input At Least One Value!')
@@ -59,7 +53,7 @@ export function InputWithButton({ onInputSubmit, placeholder, buttonName, clearI
     <div className="flex w-[450px] items-center space-x-2 pt-2">
       <Input
         type="text"
-        placeholder={pholder} // Using the placeholder prop
+        placeholder={pholder}
         value={inputValue}
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
