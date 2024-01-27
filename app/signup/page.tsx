@@ -146,23 +146,24 @@ const SignupPages = () => {
       };
     
     return ( 
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col relative">
         <div className="fixed top-0 right-0 p-4">
             <ModeToggle />
         </div>
         
-        <div className="flex flex-col justify-center items-center">
-            <div className="pt-36 font-bold text-3xl">
+        <div className="relative flex flex-col justify-center items-center">
+            <div className="pt-36 font-bold text-3xl relative z-10">
                 Welcome to ZotConnect, <span className="text-[#2563eb] dark:text-[#0390fc]">{user?.fullName}</span>!
+                <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-[600px] h-20 bg-gradient-to-r from-customDarkBlue to-customLightBlue blur-3xl rounded-full z-[-50]"></div>
             </div>
 
             {/* BASIC INFORMATION */}
             <div className="flex flex-row pt-10">
-                <Button variant={studentButtonDisable ? "ghost" : "default"} className={studentButtonDisable ? "text-muted-foreground hover:bg-inherit hover:text-muted-foreground" : ""} onClick={studentButtonDisable ? () => {} : selectedStudent}>
+                <Button variant={studentButtonDisable ? "ghost" : "default"} className={studentButtonDisable ? "shadow-2xl text-muted-foreground hover:bg-inherit hover:text-muted-foreground" : ""} onClick={studentButtonDisable ? () => {} : selectedStudent}>
                     Student
                 </Button>
                 <div className="pl-2 pb-5">
-                <Button variant={profButtonDisable ? "ghost" : "default"} className={profButtonDisable ? "text-muted-foreground hover:bg-inherit hover:text-muted-foreground" : ""} onClick={profButtonDisable ? () => {} : selectedProf}>
+                <Button variant={profButtonDisable ? "ghost" : "default"} className={profButtonDisable ? "shadow-2xl text-muted-foreground hover:bg-inherit hover:text-muted-foreground" : ""} onClick={profButtonDisable ? () => {} : selectedProf}>
                     Professor
                 </Button>
                 </div>
@@ -247,6 +248,8 @@ const SignupPages = () => {
                     </ConfirmModal>
                 </div>
             }
+
+            {/* <div className="relative bottom-0 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-customDarkBlue to-customLightBlue blur-xl z-[-1]"></div> */}
         </div>
     </div> 
     );
