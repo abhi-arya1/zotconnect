@@ -1,97 +1,27 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { useUser } from "@clerk/clerk-react";
+import { TextareaForm } from "./_components/post_info";
+import { toast } from "@/components/ui/use-toast";
 
-import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Textarea } from "@/components/ui/textarea"
+const NewPostPage = () => {
+	const { user } = useUser();
 
+	return (
+	<div className="h-full flex flex-col relative">
+		<div className="relative flex flex-col justify-center items-center">
+			<div className="pt-36 text-shadow font-bold text-3xl relative z-10">
+				Let&apos;s find your ideal hire, <span className="text-[#2563eb] dark:text-[#0390fc]">Professor {user?.lastName}</span>!
+				<div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-[600px] h-16 bg-gradient-to-r from-customDarkBlue to-customLightBlue blur-3xl rounded-full z-[-50]"></div>
+			</div>
 
-const FormSchema = z.object({
-  post: z
-    .string()
-    .min(30, {
-      message: "Posts must be at least 30 characters.",
-    })
-    .max(500, {
-      message: "Posts must not be longer than 500 characters.",
-    }),
-})
+			<TextareaForm onFormSubmit={() => {toast({
+        title: "Saved Job Description"
+    })}} />
 
-type TextareaFormProps = {
-  onFormSubmit: (data: z.infer<typeof FormSchema>) => void;
-};
-
-function TextareaForm({ onFormSubmit }: TextareaFormProps) {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  })
-
-  const onSubmit = (data: z.infer<typeof FormSchema>) => {
-    onFormSubmit(data)
-  }
-
-  return (
-    <div className="h-full flex flex-col relative">
-        <div className="relative flex flex-col justify-center items-center pt-20">
-            <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-                <FormField
-                control={form.control}
-                name="post"
-                render={({ field }) => (
-                    <FormItem>
-                        <div className="flex flex-col justify-center items-center">
-                            <FormLabel className="font-bold text-3xl">New Post</FormLabel>
-                        </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <FormControl>
-                            <Textarea
-                            style={{width: "700px", height: "100px"}}
-                            placeholder="Looking for ant experts!"
-                            className="resize-none"
-                            {...field}
-                            />
-                        </FormControl>
-                        <div className="pt-3"></div>
-                        <FormControl>
-
-                            <Textarea
-                            style={{width: "700px", height: "500px"}}
-                            placeholder="Hey, I'm Professor Peter! I'm looking for..."
-                            className="resize-none"
-                            {...field}
-                            />
-                            
-                        </FormControl>
-                        <FormDescription>
-                            make a post bro.
-                        </FormDescription>
-                    </div>
-                    
-                    <FormMessage />
-                    </FormItem>
-                )}
-                />
-                <div className="flex flex-col justify-center items-center">
-                    <Button type="submit">Save</Button>
-                </div>
-                
-            </form>
-            </Form>
-        </div>
-    </div>
-  )
+		</div>
+	</div>
+	)
 }
 
-export default TextareaForm
+export default NewPostPage;
