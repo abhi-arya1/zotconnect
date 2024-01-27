@@ -91,7 +91,7 @@ export const getByUserId = query({
         let userData;
 
         if (!user) {
-            throw new Error("No User!")
+            throw TypeError("No User!")
         }
 
         if (user.userType === "PROF") {

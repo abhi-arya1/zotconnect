@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode_toggle";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useConvexAuth } from "convex/react";
-import { SignInButton, UserButton, SignUpButton } from "@clerk/clerk-react";
+import { useConvexAuth, useQuery } from "convex/react";
+import { SignInButton, UserButton, SignUpButton, useUser } from "@clerk/clerk-react";
 import Image from "next/image";
 import { Spinner } from "@/components/spinner";
+import { api } from "@/convex/_generated/api";
 
 
 export const Navbar = () => {
