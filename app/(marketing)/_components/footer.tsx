@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github } from 'lucide-react';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
 
           <a href="mailto:support.zotconnect.com" className="text-sm hover:text-customDarkBlue">Contact Us</a>
           <a href="https://github.com/abhi-arya1/zotconnect" className="text-gray github-link hover:text-purple-500">
-            <Github size={18} />
+            <GitHubIcon />
           </a>
         </div>
       </div>
