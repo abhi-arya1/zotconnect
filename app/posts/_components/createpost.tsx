@@ -18,13 +18,13 @@ import { Textarea } from "@/components/ui/textarea"
 
 
 const FormSchema = z.object({
-  bio: z
+  post: z
     .string()
     .min(30, {
-      message: "Bio must be at least 30 characters.",
+      message: "Posts must be at least 30 characters.",
     })
-    .max(160, {
-      message: "Bio must not be longer than 160 characters.",
+    .max(500, {
+      message: "Posts must not be longer than 500 characters.",
     }),
 })
 
@@ -46,19 +46,19 @@ export function TextareaForm({ onFormSubmit }: TextareaFormProps) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
         <FormField
           control={form.control}
-          name="bio"
+          name="post"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Bio</FormLabel>
+              <FormLabel>New Post</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Hi, I'm Peter the Anteater!"
+                  placeholder="Hey, I'm Professor Peter! I'm looking for..."
                   className="resize-none"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                Tell us about yourself! Work experience, Research Interests, etc.
+                make a post bro.
               </FormDescription>
               <FormMessage />
             </FormItem>
