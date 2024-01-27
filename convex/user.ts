@@ -73,3 +73,49 @@ export const createProf = mutation({
         return document; 
     }
 })
+
+export const getByUserId = query({
+    args: { userId: v.string() },
+    handler: async (ctx, args) => {
+        // Verify the identity of the user making the request
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("No Auth");
+        }
+
+        const userId = args.userId as Id<"user">
+        const user = await ctx.db.get(userId); 
+        if (!user) {
+            throw new Error("Document Not Found");
+        }
+
+        let userData;
+
+        if (user.userType === "PROF") {
+            // Structure the document for userType "PROF"
+            userData = {
+                userId: user.userId,
+                userType: user.userType,
+                bio: user.bio,
+                name: user.name,
+                url: user.url
+            };
+        } else if (user.userType === "STUDENT") {
+            // Structure the document for userType "STUDENT" with additional attributes
+            userData = {
+                userId: user.userId,
+                userType: user.userType,
+                bio: user.bio,
+                name: user.name,
+                year: user.year,
+                major: user.major,
+                url: user.url,
+                skills: user.skills
+            };
+        } else {
+            throw new Error("Invalid userType");
+        }
+
+        return userData;
+    }
+});
