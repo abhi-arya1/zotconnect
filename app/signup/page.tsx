@@ -8,6 +8,7 @@ import * as z from "zod"
 import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/signup_input";
 import { ModeToggle } from "@/components/mode_toggle";
+import { XCircle } from "lucide-react";
 
 const FormSchema = z.object({
     bio: z
@@ -28,6 +29,7 @@ const SignupPages = () => {
     const [bio, setBio] = useState("");
     const [majorInterest, setMajorInterest] = useState("")
     const [url, setUrl] = useState("")
+    const [studentSkills, setStudentSkills] = useState<string[]>([]);
 
     // PAGE STATES 
     const [studentButtonDisable, setStudentButtonDisable] = useState(false)
@@ -59,9 +61,19 @@ const SignupPages = () => {
         setMajorInterest(value)
     };
 
+    const addSkill = (item: string) => {
+        if (studentSkills.indexOf(item) < 0) {
+            setStudentSkills(oldList => [...oldList, item]);
+        }
+    };
+
+    const removeSkill = (skillToRemove: string) => {
+        setStudentSkills(studentSkills.filter(skill => skill !== skillToRemove));
+      };
+    
     return ( 
     <div className="h-full flex flex-col">
-        <div className="fixed absolute top-0 right-0 p-4">
+        <div className="fixed top-0 right-0 p-4">
             <ModeToggle />
         </div>
         
@@ -89,22 +101,52 @@ const SignupPages = () => {
                     <div>
                         <InputWithButton
                             onInputSubmit={handleMajorInterestSubmit}
-                            placeholder="Major (No Abbreviations)"
+                            placeholder="Major (Full Form, NO Abbreviations)"
+                            buttonName="Save"
+                            onAddToList={(value: string) => {}}
                         />
                         <InputWithButton
                             onInputSubmit={handleMajorInterestSubmit}
-                            placeholder="URL (LinkedIn, etc)"
+                            placeholder="URL (e.g. LinkedIn, Portfolio, GitHub, etc)"
+                            buttonName="Save"
+                            onAddToList={(value: string) => {}}
                         />
+                        <InputWithButton 
+                            onInputSubmit={addSkill}
+                            placeholder="Add Skills (Coding Languages, Research, etc)"
+                            buttonName="Add"
+                            clearInputOnAdd={true}
+                            onAddToList={addSkill}
+                        />
+                        <div>
+                            {studentSkills.length !== 0 ? (
+                                <div className="flex text-muted-foreground items-center justify-center pt-4">
+                                    {studentSkills.map(skill => (
+                                        <button key={skill} onClick={() => removeSkill(skill)} className="flex flex-row m-1 items-center bg-slate-600 p-2 rounded-lg">
+                                        {skill} <XCircle className="pl-1 h-5 w-5" />
+                                        </button>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="flex flex-col text-muted-foreground items-center justify-center pt-4">
+                                    <i>Add Skills</i>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 ) : userType === "PROF" ? (
                     <div>
                         <InputWithButton
                             onInputSubmit={handleMajorInterestSubmit}
                             placeholder="Research Interest or Field"
+                            buttonName="Save"
+                            onAddToList={(value: string) => {}}
                         />
                         <InputWithButton
                             onInputSubmit={handleMajorInterestSubmit}
-                            placeholder="URL (LinkedIn, etc)"
+                            placeholder="URL (e.g. LinkedIn, Research Site, etc)"
+                            buttonName="Save"
+                            onAddToList={(value: string) => {}}
                         />
                     </div>
                 ) : (
