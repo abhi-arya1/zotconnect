@@ -15,11 +15,15 @@ import {
 interface ConfirmModalProps {
     children: React.ReactNode; 
     onConfirm: () => void; 
+    title: string
+    description: string
 };
 
 export const ConfirmModal = ({
     children,
-    onConfirm
+    onConfirm,
+    title,
+    description
 }: ConfirmModalProps) => {
     const handleConfirm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation()
@@ -35,10 +39,10 @@ export const ConfirmModal = ({
 
                 <AlertDialogHeader>
                     <AlertDialogTitle>
-                        Are you sure you want to delete the note?
+                        {title}
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                        This cannot be undone. 
+                        {description}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
 
@@ -46,7 +50,7 @@ export const ConfirmModal = ({
                     <AlertDialogCancel onClick={e => e.stopPropagation()}>
                         Cancel
                     </AlertDialogCancel>
-                    <AlertDialogAction onClick={handleConfirm} className="bg-red-400 hover:bg-red-500">
+                    <AlertDialogAction onClick={handleConfirm} className="bg-[#0775e3] hover:bg-[#0460bd]">
                         Confirm
                     </AlertDialogAction>
                 </AlertDialogFooter>

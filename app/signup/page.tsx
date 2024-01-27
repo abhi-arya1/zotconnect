@@ -8,11 +8,12 @@ import * as z from "zod"
 import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/signup_input";
 import { ModeToggle } from "@/components/mode_toggle";
-import { CheckCircle, XCircle } from "lucide-react";
+import { CheckCircle, HomeIcon, XCircle } from "lucide-react";
 import { useConvexAuth, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { redirect, useRouter } from "next/navigation";
 import { Spinner } from "@/components/spinner";
+import { ConfirmModal } from "@/components/modals/confirm_modal";
 
 const STUDENT = "STUDENT"
 const PROF = "PROF"
@@ -233,11 +234,19 @@ const SignupPages = () => {
                 )}
             </div>
             
+            {userType && bio && url &&
             <div className="pt-20">
-                <Button className="p-7 text-lg" onClick={onCreate}>
-                    Submit <CheckCircle className="pl-2" />
-                </Button>
+                <ConfirmModal
+                    onConfirm={onCreate}
+                    title="Wait a minute..."
+                    description="Are you sure the information provided is accurate?"
+                >
+                    <Button className="p-7 text-lg">
+                        Submit <CheckCircle className="pl-2" />
+                    </Button>
+                </ConfirmModal>
             </div>
+}
 
         </div>
     </div> 
