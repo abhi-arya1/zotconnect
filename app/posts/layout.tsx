@@ -34,7 +34,7 @@ const PostsLayout = ({
     return (
         <div className="h-full flex flex-col gap-x-2 items-center justify-center dark:bg-[#1F1F1F]">
             <div className="pb-20 max-w-96">
-                <h2 className="text-[#2563eb] dark:text-[#0390fc]">Did You Know?</h2>
+                <h2 className="text-[#2563eb] dark:text-[#0390fc] font-extrabold">Did You Know?</h2>
                 <p>{funFact ? funFact : "Loading Fun Fact..."}</p>
             </div>
             <Spinner size="lg" />
@@ -51,6 +51,7 @@ const PostsLayout = ({
       <main className="flex-1 h-full overflow-y-auto dark:bg-[#1F1F1F]">
         {children}
       </main>
+      
     </div>
   );
 };

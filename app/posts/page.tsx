@@ -28,6 +28,7 @@ const PostsPage = () => {
 
     return (
     <div>
+        <Sidebar />
         <div className="fixed top-0 right-0 p-4">
             <ModeToggle />
         </div>
