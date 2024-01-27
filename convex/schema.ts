@@ -34,6 +34,7 @@ export default defineSchema({
         userId: v.string(),
         name: v.string(),
         email: v.string(),
+        pfpUrl: v.string(),
         targetMajors: v.array(v.string()),
         targetSkills: v.array(v.string()),
         targetYears: v.array(v.string()),

@@ -29,12 +29,14 @@ const NewPostPage = () => {
 	const [years, setYears] = useState<string[]>([]);
 
 	const handleSubmit = () => {
-		const email = user?.primaryEmailAddressId
+		const email = user?.primaryEmailAddress?.emailAddress;
+		const pfpUrl = user?.imageUrl
 		createPost({
 			userId: user?.id || "Err",
 			title: title,
 			contents: desc,
 			email: email || "Err",
+			pfpUrl: pfpUrl || "Err",
 			targetMajors: majors,
 			targetSkills: studentSkills,
 			targetYears: years,
@@ -122,7 +124,7 @@ const NewPostPage = () => {
 					</div>
 				) : (
 					<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
-						<i>Add Skills</i>
+						<i>Add Majors</i>
 					</div>
 				)}
 				<div className="pt-10"></div>
@@ -143,7 +145,7 @@ const NewPostPage = () => {
 					</div>
 				) : (
 					<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
-						<i>Add Majors</i>
+						<i>Add Skills</i>
 					</div>
 				)}
 				<div className="pt-10"></div>

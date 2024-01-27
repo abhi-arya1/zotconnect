@@ -1,6 +1,5 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { Doc, Id } from "./_generated/dataModel";
 
 export const createPost = mutation({
     args: {
@@ -9,6 +8,7 @@ export const createPost = mutation({
         contents: v.string(),
         name: v.string(),
         email: v.string(),
+        pfpUrl: v.string(),
         targetMajors: v.array(v.string()),
         targetSkills: v.array(v.string()),
         targetYears: v.array(v.string())
@@ -29,6 +29,7 @@ export const createPost = mutation({
             contents: args.contents,
             name: args.name,
             email: args.email,
+            pfpUrl: args.pfpUrl,
             targetMajors: args.targetMajors,
             targetSkills: args.targetSkills,
             targetYears: args.targetYears,
@@ -53,7 +54,7 @@ export const getPostsByUser = query({
         const user = await context.db
             .query("user")
             .filter(q => q.eq(q.field("userId"), args.userId))
-            .first();  // Assuming this fetches a single user
+            .first(); 
 
         if (!user || user === undefined || user === null) {
             throw new Error("User not found");
@@ -63,26 +64,21 @@ export const getPostsByUser = query({
             .query("userpost")
             .collect();
 
-        let skills: string[];
-        if(user.skills) {
-            skills = user.skills
-        } else {
-            skills = []
-        }
+        let skills: string[] = user.skills ? user.skills.map(skill => skill.toLowerCase()) : [];
+        let major: string = user.major ? user.major : 'ERROR'
+        let year: string = user.year ? user.year : "ERROR"
 
         // Check if user type is STUDENT
-        if (user.userType === "STUDENT") {
+        if (user.userType.toLowerCase() === "student") {
             let filteredPosts = posts.filter(post => 
-                (user.skills && user.skills.length > 0 && post.targetSkills.some(skill => skills.includes(skill))) ||
-                (user.major && post.targetMajors.some(major => major === user.major)) ||
-                (user.year && post.targetYears.some(year => year === user.year))
+                (skills.length > 0 && post.targetSkills.some(skill => skills.includes(skill.toLowerCase()))) ||
+                (user.major && post.targetMajors.some(major => major.toLowerCase() === major.toLowerCase())) ||
+                (user.year && post.targetYears.some(year => year.toLowerCase() === year.toLowerCase()))
             );
 
             return filteredPosts;
         } else {
-            // If user type is not STUDENT, return all posts
             return posts;
         }
     }
 });
-

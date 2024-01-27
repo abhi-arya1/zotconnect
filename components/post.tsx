@@ -5,6 +5,7 @@ interface IPost {
     contents: string;
     name: string; 
     email: string;
+    pfpUrl: string;
     targetMajors: string[];
     targetSkills: string[];
     targetYears: string[];
@@ -20,15 +21,18 @@ interface PostsListProps {
 }
 
 const Post = ({ post }: PostProps) => {
-    const sendEmail = post.email;
     return (
-        <div className="">
-            <h3>{post.title}</h3>
-            <p>{post.contents}</p>
-            <div><b>Professor: </b> {post.name}, </div>
-            <div><b>Target Majors:</b> {post.targetMajors.join(', ')}</div>
-            <div><b>Target Skills:</b> {post.targetSkills.join(', ')}</div>
-            <div><b>Target Years:</b> {post.targetYears.join(', ')}</div>
+        <div className="flex flex-col bg-neutral-700 w-1/3 p-8 rounded-2xl">
+            <h3 className="font-bold text-2xl pb-4">{post.title}</h3>
+            <div className="flex flex-row text-muted-foreground pb-2">
+                <img src={post.pfpUrl} alt="Image" className="rounded-full h-5 w-5" />
+                <span className="pl-2 pb-2">{post.name}, {post.email}</span>
+            </div>
+            <p className="break-words pb-5 leading-relaxed">{post.contents}</p>
+
+            <div><b className="text-muted-foreground font-normal">Preferred Majors:</b> {post.targetMajors.join(', ')}</div>
+            <div><b className="text-muted-foreground font-normal">Preferred Skills:</b> {post.targetSkills.join(', ')}</div>
+            <div><b className="text-muted-foreground font-normal">Preferred Years:</b> {post.targetYears.join(', ')}</div>
         </div>
     );
 };

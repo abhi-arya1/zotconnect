@@ -92,7 +92,7 @@ const PostsPage = () => {
             </DropdownMenu>
         </div>
 
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col pl-80 items-center justify-center">
             { validPosts !== undefined ? (
                 <PostsList posts={validPosts} />
             ) : (
