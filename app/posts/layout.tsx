@@ -23,12 +23,17 @@ const PostsLayout = ({
   const { isAuthenticated, isLoading } = useConvexAuth();
 
   if (isLoading) {
+    const funFact = getRandomFunFact();
     return (
-      <div className="h-full flex items-center justify-center dark:bg-[#1F1F1F]">
-        <Spinner size="lg" />
-      </div>
-    );
-  }
+        <div className="h-full flex items-center justify-center dark:bg-[#1F1F1F]">
+            <div>
+                <h2 className="text-[#2563eb] dark:text-[#0390fc]">Did You Know?</h2>
+                <p>{funFact.fact}</p>
+            </div>
+            <Spinner size="lg"/>
+        </div>
+    )
+}
 
   if (!isAuthenticated) {
     return redirect("/");
