@@ -18,6 +18,12 @@ const config = {
       },
     },
     extend: {
+      backgroundColor: {
+        'gray-900': '#1F1F1F', // You can customize the color
+      },
+      textColor: {
+        'white': '#FFFFFF', // You can customize the color
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

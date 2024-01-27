@@ -1,3 +1,4 @@
+import Footer from "./_components/footer";
 import { Navbar } from "./_components/navbar";
 
 const MarketingLayout = ({
@@ -11,6 +12,7 @@ const MarketingLayout = ({
             <main className="h-full pt-40">
                 {children}
             </main>
+            <Footer />
         </div>
      );
 }
