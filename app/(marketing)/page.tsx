@@ -13,7 +13,7 @@ const LandingPage = () => {
         <img src="/zotconnect.png" className="max-w-[40%] mb-4 z-10"/>
 
         {/* Circle with Gradient */}
-        <div style={{ width: '400px', height: '400px' }} className="absolute bg-gradient-to-r from-blue-700 to-purple-500 rounded-full blur-xl opacity-70 -bottom-20px left-1/2 transform -translate-x-1/2 z-0"></div>
+        <div style={{ width: '450px', height: '450px' }} className="absolute bg-gradient-to-r from-blue-700 to-purple-500 rounded-full blur-xl opacity-70 -bottom-20px left-1/2 transform -translate-x-1/2 z-0"></div>
       </div>
       {/* <div>
         <div className="absolute w-64 h-64 bg-gradient-to-r from-blue-500 to-pink-500 -right-50 -left-40 rounded-full blur-lg mt-4"></div>
