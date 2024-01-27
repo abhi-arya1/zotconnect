@@ -20,7 +20,6 @@ body,
 }
 
 .typewriter-container {
-  display: grid;
   place-items: center;
   /* height: 100vh; */
 }
@@ -80,7 +79,9 @@ body,
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
+  html
+  body 
+  :root {
+    @apply h-full bg-background text-foreground;
   }
 }

@@ -2,6 +2,7 @@
 
 import Typewriter from 'typewriter-effect';
 import TwoColumnSection from './_components/two_column_section';
+import Footer from './_components/footer';
 
 const LandingPage = () => {
   return (
@@ -39,10 +40,11 @@ const LandingPage = () => {
                 .pauseFor(600)
             }}
         />
-        <TwoColumnSection/>
+        <TwoColumnSection title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
 
       </div>
-      
+
+      <Footer />
     </div>
 );
 };

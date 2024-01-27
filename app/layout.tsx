@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`h-screen ${inter.className}`}>
         <ConvexClientProvider>
             <ThemeProvider
               attribute="class"

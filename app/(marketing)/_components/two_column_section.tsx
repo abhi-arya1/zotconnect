@@ -2,7 +2,12 @@ import React from 'react';
 // import TiltImage from './tilt_image'; // Adjust the path as necessary
 import Tilt from 'react-parallax-tilt';
 
-const TwoColumnSection = () => {
+interface TwoColSecProps {
+    description: string,
+    title: string
+}
+
+const TwoColumnSection = ({ description, title }: TwoColSecProps) => {
   return (
     <div className="container mx-auto px-4 mt-[200px]">
       <div className="flex flex-wrap -mx-4">
@@ -20,9 +25,9 @@ const TwoColumnSection = () => {
         <div className="w-full md:w-1/2 px-4 flex justify-center items-center">
           <div className="text-box">
             {/* Your text content goes here */}
-            <h2 className="text-3xl font-bold mb-4">Explore New Opportunities</h2>
+            <h2 className="text-3xl font-bold mb-4">{title}</h2>
             <p className="text-lg">
-              Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.
+              {description}
             </p>
             {/* Add more content as needed */}
           </div>
