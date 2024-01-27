@@ -1,7 +1,6 @@
 "use client";
 
 import Typewriter from 'typewriter-effect';
-import TwoColumnSection from './_components/two_column_section_imgleft';
 import Footer from './_components/footer';
 import TwoColumnSectionLeftImg from './_components/two_column_section_imgleft';
 import TwoColumnSectionRightImg from './_components/two_column_section_imgright';
@@ -44,7 +43,7 @@ const LandingPage = () => {
         />
         <TwoColumnSectionLeftImg title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
 
-        <TwoColumnSectionRightImg title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
+        <TwoColumnSectionRightImg title='Get Your Resume Vetted' description='Harness the power of trained AI technology to get valuable feedback on your resume.'/>
 
       </div>
 
