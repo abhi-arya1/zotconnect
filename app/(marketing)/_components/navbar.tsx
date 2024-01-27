@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useConvexAuth } from "convex/react";
 import { SignInButton, UserButton, SignUpButton } from "@clerk/clerk-react";
 import Image from "next/image";
+import { Spinner } from "@/components/spinner";
 
 
 export const Navbar = () => {
@@ -31,7 +32,9 @@ export const Navbar = () => {
             </Link>
             <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
                 {isLoading && (
-                    <div>Loading...</div>
+                    <div>
+                        <Spinner />
+                    </div>
                 )}
                 {!isAuthenticated && !isLoading && (
                     <>
