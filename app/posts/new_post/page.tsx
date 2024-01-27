@@ -29,10 +29,12 @@ const NewPostPage = () => {
 	const [years, setYears] = useState<string[]>([]);
 
 	const handleSubmit = () => {
+		const email = user?.primaryEmailAddressId
 		createPost({
 			userId: user?.id || "Err",
 			title: title,
 			contents: desc,
+			email: email || "Err",
 			targetMajors: majors,
 			targetSkills: studentSkills,
 			targetYears: years,
