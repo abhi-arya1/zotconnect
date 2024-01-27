@@ -8,13 +8,17 @@ const LandingPage = () => {
   return (
     <div className="h-full flex flex-col ">
       <Navbar />
+      <div>
+        <div className="absolute w-64 h-64 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-lg -top-50 left-50 z-0"></div>
+      </div>
       <div className='flex items-center justify-center h-screen'>
         <img src="/zotconnect.png" className="max-w-[40%] mb-4"/>
+
       </div>
       
-      <h1 className='text-4xl md:text-6xl font-bold items-center text-center justify-center h-screen mb-2'> Welcome to <span style={{ color: '#1cb2d4', fontStyle: 'italic' }}>ZotConnect</span><span style={{fontStyle: 'italic'}}>!</span></h1>
+      <div className='text-4xl md:text-6xl font-bold items-center text-center justify-center h-screen mb-2'> Welcome to <span style={{ color: '#1cb2d4', fontStyle: 'italic' }}>ZotConnect</span><span style={{fontStyle: 'italic'}}>!</span></div>
 
-      <div className='typewriter-container w-full text-center'>
+      <div className='typewriter-container w-full text-center pb-[400px]'>
         <Typewriter
             options={{
               loop: true
