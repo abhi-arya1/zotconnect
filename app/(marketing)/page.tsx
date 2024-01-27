@@ -7,8 +7,8 @@ import TwoColumnSectionRightImg from './_components/two_column_section_imgright'
 
 const LandingPage = () => {
   return (
-    <div className="h-full flex flex-col ">
-      <div className="flex items-center justify-center h-screen relative">
+    <div className="h-full flex flex-col dark:bg-[#1F1F1F]">
+      <div className="flex items-center justify-center h-screen relative dark:bg-[#1F1F1F]">
         <img src="/zotconnect.png" className="max-w-[40%] mb-4 z-10" alt="ZotConnect Logo" />
 
         <div style={{ width: '450px', height: '450px' }} className="absolute bg-gradient-to-r from-customDarkBlue to-customLightBlue rounded-full blur-xl opacity-70 -bottom-20px left-1/2 transform -translate-x-1/2 z-0"></div>
@@ -16,7 +16,7 @@ const LandingPage = () => {
       
       <div className='text-4xl md:text-6xl font-bold items-center text-center justify-center h-screen mt-5 mb-2'> Welcome to <span style={{ color: '#1cb2d4', fontStyle: 'italic' }}>ZotConnect</span><span style={{fontStyle: 'italic'}}>!</span></div>
 
-      <div className='typewriter-container w-full text-center pb-[400px]'>
+      <div className='typewriter-container w-full text-center pb-[400px] dark:bg-[#1F1F1F]'>
         <Typewriter
             options={{
               loop: true

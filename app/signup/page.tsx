@@ -235,19 +235,18 @@ const SignupPages = () => {
             </div>
             
             {userType && bio && url &&
-            <div className="pt-20">
-                <ConfirmModal
-                    onConfirm={onCreate}
-                    title="Wait a minute..."
-                    description="Are you sure the information provided is accurate?"
-                >
-                    <Button className="p-7 text-lg">
-                        Submit <CheckCircle className="pl-2" />
-                    </Button>
-                </ConfirmModal>
-            </div>
-}
-
+                <div className="pt-20">
+                    <ConfirmModal
+                        onConfirm={onCreate}
+                        title="Wait a minute..."
+                        description="Are you sure the information provided is accurate?"
+                    >
+                        <Button className="p-7 text-lg">
+                            Submit <CheckCircle className="pl-2" />
+                        </Button>
+                    </ConfirmModal>
+                </div>
+            }
         </div>
     </div> 
     );
