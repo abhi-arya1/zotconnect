@@ -13,12 +13,14 @@ const SignupPages = () => {
 
     const selectedStudent = () => {
         setUserType("STUDENT")
+        setStudentButtonDisable(false);
         setProfButtonDisable(true)
         console.log("STUDENT")
     }
 
     const selectedProf = () => {
         setUserType("PROF")
+        setProfButtonDisable(false);
         setStudentButtonDisable(true)
         console.log("PROF")
     }
