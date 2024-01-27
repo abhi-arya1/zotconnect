@@ -33,6 +33,7 @@ export default defineSchema({
         contents: v.string(),
         userId: v.string(),
         name: v.string(),
+        email: v.string(),
         targetMajors: v.array(v.string()),
         targetSkills: v.array(v.string()),
         targetYears: v.array(v.string()),

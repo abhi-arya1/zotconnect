@@ -8,6 +8,7 @@ export const createPost = mutation({
         title: v.string(),
         contents: v.string(),
         name: v.string(),
+        email: v.string(),
         targetMajors: v.array(v.string()),
         targetSkills: v.array(v.string()),
         targetYears: v.array(v.string())
@@ -27,6 +28,7 @@ export const createPost = mutation({
             title: args.title,
             contents: args.contents,
             name: args.name,
+            email: args.email,
             targetMajors: args.targetMajors,
             targetSkills: args.targetSkills,
             targetYears: args.targetYears,

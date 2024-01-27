@@ -23,6 +23,7 @@ interface IPost {
     title: string;
     contents: string;
     name: string; // Name of the user who posted
+    email: string;
     targetMajors: string[];
     targetSkills: string[];
     targetYears: string[];
