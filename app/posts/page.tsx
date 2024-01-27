@@ -51,7 +51,7 @@ const PostsPage = () => {
 
 
     return (
-    <div className="flex flex-row w-screen">
+    <div className="flex flex-row w-screen items-center justify-center">
         <Sidebar />
 
         <div className="fixed top-0 right-0 p-4">
@@ -92,7 +92,7 @@ const PostsPage = () => {
             </DropdownMenu>
         </div>
 
-        <div className="flex flex-col pl-80 items-center justify-center">
+        <div className="items-center justify-center w-1/3 pt-56 pb-40">
             { validPosts !== undefined ? (
                 <PostsList posts={validPosts} />
             ) : (

@@ -22,7 +22,8 @@ interface PostsListProps {
 
 const Post = ({ post }: PostProps) => {
     return (
-        <div className="flex flex-col bg-gray-200 dark:bg-neutral-700 w-1/3 p-8 rounded-2xl">
+        <div>
+        <div className="flex flex-col bg-gray-200 dark:bg-neutral-700 p-8 rounded-2xl">
             <h3 className="font-bold text-2xl pb-4">{post.title}</h3>
             <div className="flex flex-row text-muted-foreground pb-2">
                 <img src={post.pfpUrl} alt="Image" className="rounded-full h-5 w-5" />
@@ -33,6 +34,8 @@ const Post = ({ post }: PostProps) => {
             <div><b className="text-muted-foreground font-normal">Preferred Majors:</b> {post.targetMajors.join(', ')}</div>
             <div><b className="text-muted-foreground font-normal">Preferred Skills:</b> {post.targetSkills.join(', ')}</div>
             <div><b className="text-muted-foreground font-normal">Preferred Years:</b> {post.targetYears.join(', ')}</div>
+        </div>
+        <div className="pb-10"></div>
         </div>
     );
 };

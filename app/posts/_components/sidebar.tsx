@@ -21,6 +21,7 @@ const Sidebar: React.FC = () => {
       };
 
     return (
+        <div className="fixed left-0 top-0">
         <div className="flex flex-col items-center justify-between h-screen w-20 p-15 transition-all duration-500 ease-in-out bg-gray-300 hover:w-52 dark:bg-neutral-700 rounded-r-3xl shadow-xl" 
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -47,16 +48,11 @@ const Sidebar: React.FC = () => {
                 Edit
                 </span>
             </div>
-
-
-
-
-
-
             <div className="pb-8">
                 <UserButton />
                 {/* {user?.fullName} */}
             </div>
+        </div>
         </div>
     );
 };
