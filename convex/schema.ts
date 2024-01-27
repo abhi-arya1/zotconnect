@@ -35,7 +35,9 @@ export default defineSchema({
         name: v.string(),
         targetMajors: v.array(v.string()),
         targetSkills: v.array(v.string()),
+        targetYear: v.string(),
     })
     .index("byTargetMajors", ["targetMajors"])
     .index("byTargetSkills", ["targetSkills"])
+    .index("byTargetYear", ["targetYear"])
 });

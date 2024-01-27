@@ -10,6 +10,7 @@ export const createPost = mutation({
         name: v.string(),
         targetMajors: v.array(v.string()),
         targetSkills: v.array(v.string()),
+        targetYear: v.string()
     },
     handler: async (context, args) => {
         const identity = await context.auth.getUserIdentity(); 
@@ -28,6 +29,7 @@ export const createPost = mutation({
             name: args.name,
             targetMajors: args.targetMajors,
             targetSkills: args.targetSkills,
+            targetYear: args.targetYear
         });
 
         return document;
