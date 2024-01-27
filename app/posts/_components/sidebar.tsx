@@ -24,16 +24,20 @@ const Sidebar: React.FC = () => {
                     className="drop-shadow-2xl pt-8"
                 />
             </Button>
-            <div className={`flex flex-col items-start transition-transform duration-700 transform ${isHovered ? 'translate-x-[-20%]' : 'translate-x-0'}`}>
-                <div className="flex items-center">
-                    <SidebarClose className="pt-2 h-[70px]" />
-                    {isHovered && <span className='ml-6 font-bold'>Close</span>}
+            <div className={`flex flex-col items-start transition-transform duration-500 ease-in-out transform ${isHovered ? 'translate-x-[-20%]' : 'translate-x-0'}`}>
+                <div className="flex items-center group">
+                    <SidebarClose className="pt-2 h-[70px] transition-transform duration-500 ease-in-out group-hover:translate-x-[-10px]" />
+                    <span className='ml-6 font-bold transition-all duration-500 ease-in-out transform translate-x-[-100%] group-hover:translate-x-0'>Close</span>
                 </div>
-                <div className="flex items-center">
-                    <Pencil className="pt-2 h-[70px]" />
-                    {isHovered && <span className='ml-6 font-bold'>Edit</span>}
+                <div className="flex items-center group">
+                    <Pencil className="pt-2 h-[70px] transition-transform duration-500 ease-in-out group-hover:translate-x-[-10px]" />
+                    <span className='ml-6 font-bold transition-all duration-500 ease-in-out transform translate-x-[-100%] group-hover:translate-x-0'>Edit</span>
                 </div>
             </div>
+
+
+
+
             <div className="pb-8">
                 <UserButton />
                 {/* {user?.fullName} */}
