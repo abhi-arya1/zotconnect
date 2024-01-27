@@ -8,7 +8,7 @@ import * as z from "zod"
 import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/signup_input";
 import { ModeToggle } from "@/components/mode_toggle";
-import { CheckCircle, HomeIcon, XCircle } from "lucide-react";
+import { CheckCircle, XCircle } from "lucide-react";
 import { useConvexAuth, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { redirect, useRouter } from "next/navigation";
@@ -147,12 +147,9 @@ const SignupPages = () => {
     
     return ( 
     <div className="h-full flex flex-col relative">
-        <div className="fixed top-0 right-0 p-4">
-            <ModeToggle />
-        </div>
         
         <div className="relative flex flex-col justify-center items-center">
-            <div className="pt-36 font-bold text-3xl relative z-10">
+            <div className="pt-36 text-shadow font-bold text-3xl relative z-10">
                 Welcome to ZotConnect, <span className="text-[#2563eb] dark:text-[#0390fc]">{user?.fullName}</span>!
                 <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-[600px] h-20 bg-gradient-to-r from-customDarkBlue to-customLightBlue blur-3xl rounded-full z-[-50]"></div>
             </div>
@@ -251,7 +248,10 @@ const SignupPages = () => {
 
             {/* <div className="relative bottom-0 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-customDarkBlue to-customLightBlue blur-xl z-[-1]"></div> */}
         </div>
-    </div> 
+        <div className="fixed top-0 right-0 p-4">
+            <ModeToggle />
+        </div>
+    </div>
     );
 }
  
