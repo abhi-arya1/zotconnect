@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -43,7 +42,7 @@ export function TextareaForm({ onFormSubmit }: TextareaFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 pt-36 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 space-y-6">
         <FormField
           control={form.control}
           name="bio"

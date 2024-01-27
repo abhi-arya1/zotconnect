@@ -26,7 +26,7 @@ export function InputWithButton({ onInputSubmit, placeholder, buttonName, clearI
 
   const handleSubmit = () => {
     if (onInputSubmit && inputValue !== '') {
-      if (placeholder === "Add a Post Title") {
+      if (placeholder === "Recommended Majors (NO Abbrev.)" || placeholder === "Recommended Skills" || placeholder === "Recommended Years") {
         onAddToList(inputValue);
         if(clearInputOnAdd) { setInputValue('') }   
       } else {
@@ -39,7 +39,7 @@ export function InputWithButton({ onInputSubmit, placeholder, buttonName, clearI
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-    if (pholder === 'Please Input At Least One Value!') {
+    if (pholder === 'Please Input a Value') {
       timeoutId = setTimeout(() => setPlaceholder(placeholder), 1500);
     }
 
@@ -50,7 +50,7 @@ export function InputWithButton({ onInputSubmit, placeholder, buttonName, clearI
 
 
   return (
-    <div className="flex w-[450px] items-center space-x-2 pt-2">
+    <div className="flex w-[450px] items-center space-x-2 pt-2 pb-5">
       <Input
         type="text"
         placeholder={pholder}
