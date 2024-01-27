@@ -9,9 +9,10 @@ import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/signup_input";
 import { ModeToggle } from "@/components/mode_toggle";
 import { CheckCircle, XCircle } from "lucide-react";
-import { useMutation } from "convex/react";
+import { useConvexAuth, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { Spinner } from "@/components/spinner";
 
 const STUDENT = "STUDENT"
 const PROF = "PROF"
@@ -45,6 +46,19 @@ const SignupPages = () => {
     // PAGE STATES 
     const [studentButtonDisable, setStudentButtonDisable] = useState(false)
     const [profButtonDisable, setProfButtonDisable] = useState(false)
+    const { isAuthenticated, isLoading } = useConvexAuth();
+
+    if(isLoading && !isAuthenticated) {
+        return (
+        <div className="h-full flex items-center justify-center">
+            <Spinner size="lg"/>
+        </div>
+        )
+    }
+
+    if(!isLoading && !isAuthenticated) {
+        return redirect("/"); 
+    }
 
     const onCreate = () => {
         if (!userId) return;
