@@ -4,7 +4,19 @@ import { useState } from "react";
 import { SignOutButton, useUser } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button";
 import { TextareaForm } from "./_components/bio_form";
+import * as z from "zod"
+import { toast } from "@/components/ui/use-toast";
 
+const FormSchema = z.object({
+    bio: z
+      .string()
+      .min(10, {
+        message: "Bio must be at least 10 characters.",
+      })
+      .max(160, {
+        message: "Bio must not be longer than 30 characters.",
+      }),
+  })
 
 const SignupPages = () => {
     const [userType, setUserType] = useState('STUDENT')
@@ -27,6 +39,13 @@ const SignupPages = () => {
         console.log("PROF")
     }
 
+    const handleFormSubmit = (formData: z.infer<typeof FormSchema>) => {
+        toast({
+            title: "Saved Bio!"
+          })
+       setBio(formData.bio)
+    };
+
     return ( 
     <div className="h-full flex flex-col">
         <div className="flex flex-col justify-center items-center">
@@ -42,7 +61,7 @@ const SignupPages = () => {
                 </div>
                 
             </div>
-            <TextareaForm />
+            <TextareaForm onFormSubmit={handleFormSubmit}/>
         </div>
     </div> 
     );

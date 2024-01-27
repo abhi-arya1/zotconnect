@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -20,28 +20,25 @@ import { toast } from "@/components/ui/use-toast"
 const FormSchema = z.object({
   bio: z
     .string()
-    .min(10, {
-      message: "Bio must be at least 10 characters.",
+    .min(30, {
+      message: "Bio must be at least 30 characters.",
     })
     .max(160, {
       message: "Bio must not be longer than 30 characters.",
     }),
 })
 
-export function TextareaForm() {
+type TextareaFormProps = {
+  onFormSubmit: (data: z.infer<typeof FormSchema>) => void;
+};
+
+export function TextareaForm({ onFormSubmit }: TextareaFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+  const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    onFormSubmit(data)
   }
 
   return (
@@ -55,19 +52,19 @@ export function TextareaForm() {
               <FormLabel>Bio</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us a little bit about yourself"
+                  placeholder="Hi, I'm Peter the Anteater!"
                   className="resize-none"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                You can <span>@mention</span> other users and organizations.
+                Tell us about yourself! Work experience, Research Interests, etc.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Save</Button>
       </form>
     </Form>
   )
