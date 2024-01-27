@@ -35,12 +35,18 @@ export const Navbar = () => {
                 )}
                 {!isAuthenticated && !isLoading && (
                     <>
-                        <SignInButton mode="modal">
+                        <SignInButton 
+                            mode="modal"
+                            afterSignInUrl="/posts"
+                        >
                             <Button variant="ghost" size="sm">
                                 Log In
                             </Button>
                         </SignInButton>
-                        <SignUpButton mode="modal">
+                        <SignUpButton 
+                            mode="modal"
+                            afterSignUpUrl="/signup"
+                        >
                             <Button size="sm">
                                 Join ZotConnect
                             </Button>
@@ -50,7 +56,7 @@ export const Navbar = () => {
                 {isAuthenticated && !isLoading && (
                     <>
                     <Button size="sm" asChild>
-                        <Link href="/signup">
+                        <Link href="/posts">
                             Enter ZotConnect
                         </Link>
                     </Button>

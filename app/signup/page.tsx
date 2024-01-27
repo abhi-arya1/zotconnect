@@ -11,6 +11,10 @@ import { ModeToggle } from "@/components/mode_toggle";
 import { CheckCircle, XCircle } from "lucide-react";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { useRouter } from "next/navigation";
+
+const STUDENT = "STUDENT"
+const PROF = "PROF"
 
 const FormSchema = z.object({
     bio: z
@@ -25,8 +29,8 @@ const FormSchema = z.object({
 
 const SignupPages = () => {
     const createStudent = useMutation(api.user.createStudent)
-    const [urlPrompt, setUrlPrompt] = useState("");
-    const [majorPrompt, setMajorPrompt] = useState("");
+    const createProf = useMutation(api.user.createProf)
+    const router = useRouter()
 
     // USER DATA
     const { user } = useUser(); 
@@ -44,19 +48,32 @@ const SignupPages = () => {
 
     const onCreate = () => {
         if (!userId) return;
-        createStudent({ 
-            bio: bio,
-            userId: userId,
-            userType: userType,
-            name: user?.fullName || "Error",
-            year: year,
-            major: majorInterest,
-            url: url,
-            skills: studentSkills,
-        })
-        .then(() => {
-            // PUSH ROUTE
-        })
+        if (userType === STUDENT) {
+            createStudent({ 
+                bio: bio,
+                userId: userId,
+                userType: userType,
+                name: user?.fullName || "Error",
+                year: year,
+                major: majorInterest,
+                url: url,
+                skills: studentSkills,
+            })
+            .then(() => {
+                router.push('/posts');
+            })
+        } else {
+            createProf({
+                bio: bio,
+                name: user?.fullName || "Error",
+                userId: userId,
+                userType: userType,
+                url: url,
+            })
+            .then(() => {
+                router.push('/posts');
+            })
+        }
 
         toast({
             title: "Success! Welcome to ZotConnect"
@@ -64,13 +81,13 @@ const SignupPages = () => {
     }
 
     const selectedStudent = () => {
-        setUserType("STUDENT")
+        setUserType(STUDENT)
         setStudentButtonDisable(false);
         setProfButtonDisable(true)
     }
 
     const selectedProf = () => {
-        setUserType("PROF")
+        setUserType(PROF)
         setProfButtonDisable(false);
         setStudentButtonDisable(true);
     }
@@ -139,7 +156,7 @@ const SignupPages = () => {
                 <TextareaForm onFormSubmit={handleBioFormSubmit}/>
             </div>
             <div className="pt-10">
-                {userType === "STUDENT" ? (
+                {userType === STUDENT ? (
                     <div>
                         <InputWithButton
                             onInputSubmit={handleMajorInterestSubmit}
@@ -182,7 +199,7 @@ const SignupPages = () => {
                             )}
                         </div>
                     </div>
-                ) : userType === "PROF" ? (
+                ) : userType === PROF ? (
                     <div>
                         <InputWithButton
                             onInputSubmit={handleMajorInterestSubmit}

@@ -1,16 +1,13 @@
 "use client";
 
-import { Navbar } from './_components/navbar';
 import Typewriter from 'typewriter-effect';
 import TwoColumnSection from './_components/two_column_section';
-
 
 const LandingPage = () => {
   return (
     <div className="h-full flex flex-col ">
-      <Navbar />
       <div className="flex items-center justify-center h-screen relative">
-        <img src="/zotconnect.png" className="max-w-[40%] mb-4 z-10"/>
+        <img src="/zotconnect.png" className="max-w-[40%] mb-4 z-10" alt="ZotConnect Logo" />
 
         <div style={{ width: '450px', height: '450px' }} className="absolute bg-gradient-to-r from-customDarkBlue to-customLightBlue rounded-full blur-xl opacity-70 -bottom-20px left-1/2 transform -translate-x-1/2 z-0"></div>
       </div>
