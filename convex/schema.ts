@@ -26,5 +26,16 @@ export default defineSchema({
         skills: v.optional(v.array(v.string())),
     })
     .index("by_userType", ["userType"])
-    .index("by_skills", ["skills"])
+    .index("by_skills", ["skills"]),
+
+    userpost: defineTable({
+        title: v.string(),
+        contents: v.string(),
+        userId: v.string(),
+        name: v.string(),
+        targetMajors: v.array(v.string()),
+        targetSkills: v.array(v.string()),
+    })
+    .index("byTargetMajors", ["targetMajors"])
+    .index("byTargetSkills", ["targetSkills"])
 });
