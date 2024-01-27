@@ -12,10 +12,18 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/navigation";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { useUser } from "@clerk/clerk-react";
   
 
 const PostsPage = () => {
     const router = useRouter()
+
+    const{user} = useUser();
+    const userData = useQuery(api.user.getByUserId, {
+        userId: user?.id || "Error"
+    });
 
     return (
     <div>
@@ -32,12 +40,14 @@ const PostsPage = () => {
         <DropdownMenuContent>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {router.push('/new_post')}}>
-                <div className="pr-2">
-                    <SquarePen className="h-4 w-4" />
-                </div>
-                New Post
-            </DropdownMenuItem>
+            { userData?.userType === "PROF" && 
+                <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {router.push('/new_post')}}>
+                    <div className="pr-2">
+                        <SquarePen className="h-4 w-4" />
+                    </div>
+                    New Post
+                </DropdownMenuItem>
+            }
             <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {router.push('/new_resume')}}>
                 <div className="pr-2">
                     <FilePlus className="h-4 w-4" />

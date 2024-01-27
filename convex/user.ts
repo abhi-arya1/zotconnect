@@ -83,13 +83,16 @@ export const getByUserId = query({
             throw new Error("No Auth");
         }
 
-        const userId = args.userId as Id<"user">
-        const user = await ctx.db.get(userId); 
-        if (!user) {
-            throw new Error("Document Not Found");
-        }
+        const user = await ctx.db
+        .query("user")
+        .filter((q) => q.eq(q.field("userId"), args.userId))
+        .first()
 
         let userData;
+
+        if (!user) {
+            throw new Error("No User!")
+        }
 
         if (user.userType === "PROF") {
             // Structure the document for userType "PROF"
