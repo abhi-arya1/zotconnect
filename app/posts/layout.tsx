@@ -1,7 +1,6 @@
 "use client";
 import { Spinner } from "@/components/spinner";
 import { useConvexAuth } from "convex/react";
-import { Sidebar } from "lucide-react";
 import { redirect } from "next/navigation";
 import funFactsData from '@/uci_fun_facts.json';
 import { useState, useEffect } from "react";
@@ -51,7 +50,6 @@ const PostsLayout = ({
       <main className="flex-1 h-full overflow-y-auto dark:bg-[#1F1F1F]">
         {children}
       </main>
-      
     </div>
   );
 };
