@@ -82,6 +82,7 @@ const SignupPages = () => {
                 bio: bio,
                 name: user?.fullName || "Error",
                 userId: userId,
+                major: majorInterest,
                 userType: userType,
                 url: url,
             })

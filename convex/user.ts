@@ -49,6 +49,7 @@ export const createProf = mutation({
         userId: v.string(), 
         userType: v.string(),
         name: v.string(),
+        major: v.string(),
         bio: v.string(),
         url: v.string(),
     },
@@ -66,6 +67,7 @@ export const createProf = mutation({
             userId: args.userId,
             userType: args.userType,
             bio: args.bio,
+            major: args.major,
             name: args.name,
             url: args.url,
         });

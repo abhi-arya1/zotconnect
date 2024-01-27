@@ -35,3 +35,52 @@ export const createPost = mutation({
         return document;
     }
 })
+
+
+export const getPostsByUser = query({
+    args: {
+        userId: v.string(), 
+    },
+    handler: async (context, args) => {
+        const identity = await context.auth.getUserIdentity(); 
+
+        if (!identity) {
+            throw new Error("Not Authenticated");
+        }
+
+        const user = await context.db
+            .query("user")
+            .filter(q => q.eq(q.field("userId"), args.userId))
+            .first();  // Assuming this fetches a single user
+
+        if (!user || user === undefined || user === null) {
+            throw new Error("User not found");
+        }
+
+        const posts = await context.db
+            .query("userpost")
+            .collect();
+
+        let skills: string[];
+        if(user.skills) {
+            skills = user.skills
+        } else {
+            skills = []
+        }
+
+        // Check if user type is STUDENT
+        if (user.userType === "STUDENT") {
+            let filteredPosts = posts.filter(post => 
+                (user.skills && user.skills.length > 0 && post.targetSkills.some(skill => skills.includes(skill))) ||
+                (user.major && post.targetMajors.some(major => major === user.major)) ||
+                (user.year && post.targetYears.some(year => year === user.year))
+            );
+
+            return filteredPosts;
+        } else {
+            // If user type is not STUDENT, return all posts
+            return posts;
+        }
+    }
+});
+
