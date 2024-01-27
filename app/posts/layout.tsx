@@ -4,6 +4,7 @@ import { useConvexAuth } from "convex/react";
 import { Sidebar } from "lucide-react";
 import { redirect } from "next/navigation";
 import funFactsData from '@/uci_fun_facts.json';
+import { useState, useEffect } from "react";
 
 type FunFact = {
     fact: string;
@@ -21,16 +22,22 @@ const PostsLayout = ({
   children: React.ReactNode;
 }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
+  const [funFact, setFunFact] = useState<string | null>(null);
+
+    useEffect(() => {
+        // This code will only run on the client side after the component mounts
+        const fact = getRandomFunFact();
+        setFunFact(fact.fact);
+    }, []);
 
   if (isLoading) {
-    const funFact = getRandomFunFact();
     return (
-        <div className="h-full flex items-center justify-center dark:bg-[#1F1F1F]">
-            <div>
+        <div className="h-full flex flex-col gap-x-2 items-center justify-center dark:bg-[#1F1F1F]">
+            <div className="pb-20 max-w-96">
                 <h2 className="text-[#2563eb] dark:text-[#0390fc]">Did You Know?</h2>
-                <p>{funFact.fact}</p>
+                <p>{funFact ? funFact : "Loading Fun Fact..."}</p>
             </div>
-            <Spinner size="lg"/>
+            <Spinner size="lg" />
         </div>
     )
 }
