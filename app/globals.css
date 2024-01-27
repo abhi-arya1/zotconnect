@@ -9,7 +9,7 @@
 html,
 body,
 :root {
-  height: 100%;
+  height: 100vh;
   font-family: 'Inter', sans-serif;
 }
 
@@ -21,7 +21,7 @@ body,
 .typewriter-container {
   display: grid;
   place-items: center;
-  height: 100vh; /* Full height of the viewport */
+  /* height: 100vh; */
 }
 
 .highlight {

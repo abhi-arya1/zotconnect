@@ -19,12 +19,12 @@ export const Navbar = () => {
             "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-full p-6",
             scrolled && "border-b shadow-sm"
         )}>
-            <Link href="/signup">
+            <Link href="/">
                 <Image 
-                    src="/zotconnect.jpg" // Your image path
+                    src="/petrhead.png" // Your image path
                     alt="Logo"
-                    width={50} // Adjust as needed
-                    height={50} // Adjust as needed
+                    width={70} // Adjust as needed
+                    height={70} // Adjust as needed
                     style={{ borderRadius: '10px', cursor: 'pointer' }} // Rounded edges and cursor style
                 />
             </Link>
@@ -49,7 +49,7 @@ export const Navbar = () => {
                 {isAuthenticated && !isLoading && (
                     <>
                     <Button size="sm" asChild>
-                        <Link href="/posts">
+                        <Link href="/signup">
                             Enter ZotConnect
                         </Link>
                     </Button>
