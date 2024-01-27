@@ -59,9 +59,8 @@ const SignupPages = () => {
                     Professor
                 </Button>
                 </div>
-                
             </div>
-            <div>
+            <div className="flex flex-col justify-center items-center">
                 <TextareaForm onFormSubmit={handleFormSubmit}/>
             </div>
         </div>
