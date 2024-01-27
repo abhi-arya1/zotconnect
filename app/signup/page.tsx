@@ -120,7 +120,7 @@ const SignupPages = () => {
                         />
                         <div>
                             {studentSkills.length !== 0 ? (
-                                <div className="flex text-muted-foreground items-center justify-center pt-4">
+                                <div className="flex text-gray-200 dark:text-muted-foreground items-center justify-center pt-4">
                                     {studentSkills.map(skill => (
                                         <button key={skill} onClick={() => removeSkill(skill)} className="flex flex-row m-1 items-center bg-slate-600 p-2 pl-3 pr-3 rounded-lg">
                                         {skill} <XCircle className="pl-1 h-5 w-5" />
