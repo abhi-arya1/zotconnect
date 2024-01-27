@@ -25,14 +25,14 @@ export function InputWithButton({ onInputSubmit, placeholder }: InputWithButtonP
   };
 
   return (
-    <div className="flex w-[300px] items-center space-x-2">
+    <div className="flex w-[300px] items-center space-x-2 pt-2">
       <Input
         type="text"
         placeholder={placeholder} // Using the placeholder prop
         value={inputValue}
         onChange={handleInputChange}
       />
-      <Button type="submit" onClick={handleSubmit}>Save</Button>
+      <Button type="submit" className="border-2" onClick={handleSubmit}>Save</Button>
     </div>
   );
 }

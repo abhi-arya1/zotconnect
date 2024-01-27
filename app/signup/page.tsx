@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { TextareaForm } from "./_components/bio_form";
 import * as z from "zod"
 import { toast } from "@/components/ui/use-toast";
-import { InputWithButton } from "./_components/input_interest";
+import { InputWithButton } from "./_components/signup_input";
 import { ModeToggle } from "@/components/mode_toggle";
 
 const FormSchema = z.object({
@@ -91,12 +91,20 @@ const SignupPages = () => {
                             onInputSubmit={handleMajorInterestSubmit}
                             placeholder="Major (No Abbreviations)"
                         />
+                        <InputWithButton
+                            onInputSubmit={handleMajorInterestSubmit}
+                            placeholder="URL (LinkedIn, etc)"
+                        />
                     </div>
                 ) : userType === "PROF" ? (
                     <div>
                         <InputWithButton
                             onInputSubmit={handleMajorInterestSubmit}
                             placeholder="Research Interest or Field"
+                        />
+                        <InputWithButton
+                            onInputSubmit={handleMajorInterestSubmit}
+                            placeholder="URL (LinkedIn, etc)"
                         />
                     </div>
                 ) : (
