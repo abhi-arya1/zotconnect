@@ -2,9 +2,8 @@
 import { Spinner } from "@/components/spinner";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
- 
 
-const MainLayout = ({
+const PostsLayout = ({
     children
 }: {
     children: React.ReactNode; 
@@ -32,4 +31,4 @@ const MainLayout = ({
     );
 }
  
-export default MainLayout;
+export default PostsLayout;
