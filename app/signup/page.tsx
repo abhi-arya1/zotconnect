@@ -7,6 +7,7 @@ import { TextareaForm } from "./_components/bio_form";
 import * as z from "zod"
 import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/input_interest";
+import { ModeToggle } from "@/components/mode_toggle";
 
 const FormSchema = z.object({
     bio: z
@@ -26,7 +27,7 @@ const SignupPages = () => {
     const [userType, setUserType] = useState("");
     const [bio, setBio] = useState("");
     const [majorInterest, setMajorInterest] = useState("")
-
+    const [url, setUrl] = useState("")
 
     // PAGE STATES 
     const [studentButtonDisable, setStudentButtonDisable] = useState(false)
@@ -60,9 +61,13 @@ const SignupPages = () => {
 
     return ( 
     <div className="h-full flex flex-col">
+        <div className="fixed absolute top-0 right-0 p-4">
+            <ModeToggle />
+        </div>
+        
         <div className="flex flex-col justify-center items-center">
             <div className="pt-40 font-bold text-3xl">
-                Welcome to ZotConnect, <span className="text-[#03fcf8]">{user?.fullName}</span>!
+                Welcome to ZotConnect, <span className="text-[#2563eb] dark:text-[#0390fc]">{user?.fullName}</span>!
             </div>
 
             {/* BASIC INFORMATION */}
@@ -95,7 +100,7 @@ const SignupPages = () => {
                         />
                     </div>
                 ) : (
-                    <div>Please Select A Role, either <span className="text-[#03fcf8]">Student</span> or <span className="text-[#03fcf8]">Professor</span></div>
+                    <div>Please Select A Role, either <span className="text-[#2563eb] dark:text-[#0390fc]">Student</span> or <span className="text-[#2563eb] dark:text-[#0390fc]">Professor</span></div>
                 )}
             </div>
 
