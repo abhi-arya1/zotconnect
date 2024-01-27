@@ -38,15 +38,9 @@ const Sidebar: React.FC = () => {
             </Button>
             <div className="flex items-center">
                 <SidebarClose className="pt-2 h-[70px] translate-x-[-10px]" />
-                <span className="ml-6 font-bold" style={iconTextStyle}>
-                Close
-                </span>
             </div>
             <div className="flex items-center">
                 <Pencil className="pt-2 h-[70px] translate-x-[-10px]" />
-                <span className="ml-6 font-bold" style={iconTextStyle}>
-                Edit
-                </span>
             </div>
             <div className="pb-8">
                 <UserButton />
