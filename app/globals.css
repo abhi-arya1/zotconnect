@@ -12,6 +12,21 @@ body,
   height: 100%;
   font-family: 'Inter', sans-serif;
 }
+
+.Typewriter {
+  font-size: 48px;
+  font-family: 'Inter', sans-serif;
+}
+
+.typewriter-container {
+  display: grid;
+  place-items: center;
+  height: 100vh; /* Full height of the viewport */
+}
+
+.highlight {
+  color: #1cb2d4
+}
  
 @layer base {
   :root {
