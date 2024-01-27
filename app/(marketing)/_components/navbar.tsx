@@ -30,7 +30,7 @@ export const Navbar = () => {
                         </SignInButton>
                         <SignInButton mode="modal">
                             <Button size="sm">
-                                Get Jotster
+                                Join ZotConnect
                             </Button>
                         </SignInButton>
                     </>
@@ -39,7 +39,7 @@ export const Navbar = () => {
                     <>
                     <Button size="sm" asChild>
                         <Link href="/documents">
-                            Enter Jotster
+                            Enter ZotConnect
                         </Link>
                     </Button>
                     <UserButton afterSignOutUrl="/" />
