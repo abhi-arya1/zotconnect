@@ -49,7 +49,7 @@ export const Navbar = () => {
                 {isAuthenticated && !isLoading && (
                     <>
                     <Button size="sm" asChild>
-                        <Link href="/signup">
+                        <Link href="/posts">
                             Enter ZotConnect
                         </Link>
                     </Button>
