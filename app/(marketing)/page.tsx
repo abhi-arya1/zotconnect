@@ -1,8 +1,10 @@
 "use client";
 
 import Typewriter from 'typewriter-effect';
-import TwoColumnSection from './_components/two_column_section';
+import TwoColumnSection from './_components/two_column_section_imgleft';
 import Footer from './_components/footer';
+import TwoColumnSectionLeftImg from './_components/two_column_section_imgleft';
+import TwoColumnSectionRightImg from './_components/two_column_section_imgright';
 
 const LandingPage = () => {
   return (
@@ -40,7 +42,9 @@ const LandingPage = () => {
                 .pauseFor(600)
             }}
         />
-        <TwoColumnSection title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
+        <TwoColumnSectionLeftImg title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
+
+        <TwoColumnSectionRightImg title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
 
       </div>
 
