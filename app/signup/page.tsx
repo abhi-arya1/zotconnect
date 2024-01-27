@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SignOutButton, useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button";
 import { TextareaForm } from "./_components/bio_form";
 import * as z from "zod"
@@ -29,14 +29,12 @@ const SignupPages = () => {
         setUserType("STUDENT")
         setStudentButtonDisable(false);
         setProfButtonDisable(true)
-        console.log("STUDENT")
     }
 
     const selectedProf = () => {
         setUserType("PROF")
         setProfButtonDisable(false);
         setStudentButtonDisable(true)
-        console.log("PROF")
     }
 
     const handleFormSubmit = (formData: z.infer<typeof FormSchema>) => {
@@ -49,7 +47,9 @@ const SignupPages = () => {
     return ( 
     <div className="h-full flex flex-col">
         <div className="flex flex-col justify-center items-center">
-            Welcome {user?.fullName}
+            <div className="pt-40 font-bold text-3xl">
+                Welcome to ZotConnect, <span className="text-[#03fcf8]">{user?.fullName}</span>!
+            </div>
             <div className="flex flex-col pt-10">
                 <Button variant={studentButtonDisable ? "ghost" : "default"} onClick={selectedStudent}>
                     Student
@@ -61,7 +61,9 @@ const SignupPages = () => {
                 </div>
                 
             </div>
-            <TextareaForm onFormSubmit={handleFormSubmit}/>
+            <div>
+                <TextareaForm onFormSubmit={handleFormSubmit}/>
+            </div>
         </div>
     </div> 
     );
