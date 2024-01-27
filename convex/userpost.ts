@@ -30,6 +30,6 @@ export const createPost = mutation({
             targetSkills: args.targetSkills,
         });
 
-        return document; 
+        return document;
     }
 })
