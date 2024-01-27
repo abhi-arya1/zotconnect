@@ -51,7 +51,7 @@ const PostsPage = () => {
 
 
     return (
-    <div className="flex flex-row">
+    <div className="flex flex-row w-screen">
         <Sidebar />
 
         <div className="fixed top-0 right-0 p-4">
