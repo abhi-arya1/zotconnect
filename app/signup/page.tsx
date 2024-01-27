@@ -9,7 +9,6 @@ import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/signup_input";
 import { ModeToggle } from "@/components/mode_toggle";
 import { XCircle } from "lucide-react";
-import { createStudent } from "@/convex/user";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
