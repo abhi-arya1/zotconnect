@@ -9,6 +9,9 @@ import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/signup_input";
 import { ModeToggle } from "@/components/mode_toggle";
 import { XCircle } from "lucide-react";
+import { createStudent } from "@/convex/user";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 const FormSchema = z.object({
     bio: z
@@ -22,6 +25,8 @@ const FormSchema = z.object({
   })
 
 const SignupPages = () => {
+    const createStudent = useMutation(api.user.createStudent)
+
     // USER DATA
     const { user } = useUser(); 
     const userId = user?.id;
@@ -29,11 +34,33 @@ const SignupPages = () => {
     const [bio, setBio] = useState("");
     const [majorInterest, setMajorInterest] = useState("")
     const [url, setUrl] = useState("")
+    const [year, setYear] = useState("2024");
     const [studentSkills, setStudentSkills] = useState<string[]>([]);
 
     // PAGE STATES 
     const [studentButtonDisable, setStudentButtonDisable] = useState(false)
     const [profButtonDisable, setProfButtonDisable] = useState(false)
+
+    const onCreate = () => {
+        if (!userId) return;
+        createStudent({ 
+            bio: bio,
+            userId: userId,
+            userType: userType,
+            name: user?.fullName || "Error",
+            year: year,
+            major: majorInterest,
+            url: url,
+            skills: studentSkills,
+        })
+        .then(() => {
+            // PUSH ROUTE
+        })
+
+        toast({
+            title: "Success! Welcome to ZotConnect"
+        })
+    }
 
     const selectedStudent = () => {
         setUserType("STUDENT")
@@ -61,6 +88,20 @@ const SignupPages = () => {
         setMajorInterest(value)
     };
 
+    const handleURLSubmit = (type: string, value: string) => {
+        toast({
+            title: `Saved URL: ${value}`
+        })
+        setUrl(value);
+    }
+
+    const handleYearSubmit = (type: string, value: string) => {
+        toast({
+            title: `Set Graduation Year: ${value}`
+        })
+        setYear(value);
+    }
+
     const addSkill = (item: string) => {
         if (studentSkills.indexOf(item) < 0) {
             setStudentSkills(oldList => [...oldList, item]);
@@ -78,17 +119,17 @@ const SignupPages = () => {
         </div>
         
         <div className="flex flex-col justify-center items-center">
-            <div className="pt-40 font-bold text-3xl">
+            <div className="pt-36 font-bold text-3xl">
                 Welcome to ZotConnect, <span className="text-[#2563eb] dark:text-[#0390fc]">{user?.fullName}</span>!
             </div>
 
             {/* BASIC INFORMATION */}
-            <div className="flex flex-col pt-10">
-                <Button variant={studentButtonDisable ? "ghost" : "default"} onClick={selectedStudent}>
+            <div className="flex flex-row pt-10">
+                <Button variant={studentButtonDisable ? "outline" : "default"} onClick={selectedStudent}>
                     Student
                 </Button>
-                <div className="pt-2">
-                <Button variant={profButtonDisable ? "ghost" : "default"} onClick={selectedProf}>
+                <div className="pl-2 pb-5">
+                <Button variant={profButtonDisable ? "outline" : "default"} onClick={selectedProf}>
                     Professor
                 </Button>
                 </div>
@@ -106,7 +147,13 @@ const SignupPages = () => {
                             onAddToList={(value: string) => {}}
                         />
                         <InputWithButton
-                            onInputSubmit={handleMajorInterestSubmit}
+                            onInputSubmit={handleYearSubmit}
+                            placeholder="Expected Graduation Year (Number Only)"
+                            buttonName="Save"
+                            onAddToList={(value: string) => {}}
+                        />
+                        <InputWithButton
+                            onInputSubmit={handleURLSubmit}
                             placeholder="URL (e.g. LinkedIn, Portfolio, GitHub, etc)"
                             buttonName="Save"
                             onAddToList={(value: string) => {}}
@@ -153,7 +200,12 @@ const SignupPages = () => {
                     <div>Please Select A Role, either <span className="text-[#2563eb] dark:text-[#0390fc]">Student</span> or <span className="text-[#2563eb] dark:text-[#0390fc]">Professor</span></div>
                 )}
             </div>
-
+            
+            <div className="pt-20">
+                <Button className="p-7 text-xl" onClick={onCreate}>
+                    Submit
+                </Button>
+            </div>
 
         </div>
     </div> 

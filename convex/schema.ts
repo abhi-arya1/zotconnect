@@ -12,8 +12,6 @@ const user_post = {
     "email": v.string(),
 }
 
-const skills = []
-
 export default defineSchema({
     user: defineTable({
         userId: v.string(), 
@@ -25,7 +23,7 @@ export default defineSchema({
         bio: v.string(),
         posts: v.optional(v.object(user_post)),
         url: v.optional(v.string()),
-        skills: v.optional(v.string()),
+        skills: v.optional(v.array(v.string())),
     })
     .index("by_userType", ["userType"])
     .index("by_skills", ["skills"])

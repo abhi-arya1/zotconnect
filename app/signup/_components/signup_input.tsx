@@ -35,6 +35,8 @@ export function InputWithButton({ onInputSubmit, placeholder, buttonName, clearI
       } else if (placeholder === "Add Skills (Coding Languages, Research, etc)") {
         onAddToList(inputValue);
         if(clearInputOnAdd) { setInputValue('') }    
+      } else {
+        onInputSubmit("GradYear", inputValue);
       }
     } else if (inputValue === '') {
       setPlaceholder('Please Input At Least One Value!')

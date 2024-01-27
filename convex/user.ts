@@ -17,7 +17,7 @@ export const createStudent = mutation({
         major: v.string(),
         bio: v.string(),
         url: v.string(),
-        skills: v.string(),
+        skills: v.array(v.string()),
     },
     handler: async (context, args) => {
         const identity = await context.auth.getUserIdentity(); 
@@ -30,7 +30,7 @@ export const createStudent = mutation({
 
         const document = await context.db.insert("user",
         {
-            userId: args.userId,
+            userId: userId,
             userType: args.userType,
             bio: args.bio,
             name: args.name,
