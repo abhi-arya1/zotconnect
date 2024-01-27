@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { SignOutButton, useUser } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button";
+import { TextareaForm } from "./_components/bio_form";
 
 
 const SignupPages = () => {
     const [userType, setUserType] = useState('STUDENT')
     const [studentButtonDisable, setStudentButtonDisable] = useState(false)
     const [profButtonDisable, setProfButtonDisable] = useState(false)
+    const [bio, setBio] = useState("")
     const { user } = useUser(); 
 
     const selectedStudent = () => {
@@ -38,7 +40,9 @@ const SignupPages = () => {
                     Professor
                 </Button>
                 </div>
+                
             </div>
+            <TextareaForm />
         </div>
     </div> 
     );
