@@ -25,7 +25,8 @@ export const Navbar = () => {
                     alt="Logo"
                     width={70} // Adjust as needed
                     height={70} // Adjust as needed
-                    style={{ borderRadius: '10px', cursor: 'pointer' }} // Rounded edges and cursor style
+                    style={{ borderRadius: '10px', cursor: 'pointer' }}
+                    className="drop-shadow-2xl"
                 />
             </Link>
             <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">

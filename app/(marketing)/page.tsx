@@ -2,11 +2,12 @@
 
 import { Navbar } from './_components/navbar';
 import Typewriter from 'typewriter-effect';
+import TwoColumnSection from './_components/two_column_section';
 
 
 const LandingPage = () => {
   return (
-    <div className="h-full min-h-screen flex flex-col ">
+    <div className="h-full flex flex-col ">
       <Navbar />
       <div className="flex items-center justify-center h-screen relative">
         <img src="/zotconnect.png" className="max-w-[40%] mb-4 z-10"/>
@@ -41,6 +42,8 @@ const LandingPage = () => {
                 .pauseFor(600)
             }}
         />
+        <TwoColumnSection/>
+
       </div>
       
     </div>
