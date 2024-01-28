@@ -7,7 +7,7 @@ interface TwoColSecProps {
     title: string
 }
 
-const TwoColumnSectionRightImg = ({ description, title }: TwoColSecProps) => {
+const TwoColumnSectionRightImgSecond = ({ description, title }: TwoColSecProps) => {
   return (
     <div className="container mx-auto px-4 mt-[200px]">
       <div className="flex flex-wrap -mx-4">
@@ -28,8 +28,8 @@ const TwoColumnSectionRightImg = ({ description, title }: TwoColSecProps) => {
         <div className="w-full md:w-1/2 px-4 flex justify-center items-center">
           <Tilt className="parallax-effect-glare-scale mt-5 rounded-md drop-shadow-2xl" style={{ height: '300px', backgroundColor: 'darkgrey' }} glareEnable={true} glareMaxOpacity={0.45} scale={1.02} tiltAngleYInitial={20} tiltEnable={true}>
             <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '20px' }}>
-                <img className='drop-shadow-2xl hidden dark:block rounded-md' src="resume_review_dark.png" alt="tilt-img" />
-                <img className='drop-shadow-2xl dark:hidden rounded-md' src="resume_review_light.png" alt="tilt-img" />
+                <img className='drop-shadow-2xl hidden dark:block rounded-md' src="profile_page_dark.png" alt="tilt-img" />
+                <img className='drop-shadow-2xl dark:hidden rounded-md' src="profile_page_light.png" alt="tilt-img" />
             </div>
             </Tilt>
         </div>
@@ -38,4 +38,4 @@ const TwoColumnSectionRightImg = ({ description, title }: TwoColSecProps) => {
   );
 };
 
-export default TwoColumnSectionRightImg;
+export default TwoColumnSectionRightImgSecond;

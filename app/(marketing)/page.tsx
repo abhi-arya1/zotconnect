@@ -4,6 +4,15 @@ import Typewriter from 'typewriter-effect';
 import Footer from './_components/footer';
 import TwoColumnSectionLeftImg from './_components/two_column_section_imgleft';
 import TwoColumnSectionRightImg from './_components/two_column_section_imgright';
+import TwoColumnSectionLeftImgSecond from './_components/two_column_section_imgleft_second';
+import TwoColumnSectionRightImgSecond from './_components/two_column_section_imgright_second';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
 
 const LandingPage = () => {
 
@@ -48,9 +57,27 @@ const LandingPage = () => {
 
         </Button> */}
         <TwoColumnSectionLeftImg title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
-
         <TwoColumnSectionRightImg title='Get Your Resume Vetted' description='Harness the power of trained AI technology to get valuable feedback on your resume.'/>
+        <TwoColumnSectionLeftImgSecond title='Professor Utilities' description='Harness the power of trained AI technology to get valuable feedback on your resume.' />
+        <TwoColumnSectionRightImgSecond title='Professor Utilities' description='Harness the power of trained AI technology to get valuable feedback on your resume.'/>
 
+        <div className='text-2xl font-extrabold pt-52 pb-5' >FAQs</div>
+          <div className='mb-15'>
+          <Accordion type="single" collapsible className='flex flex-col items-left pl-20 pr-20 pb-25'>
+            <AccordionItem value="item-1">
+              <AccordionTrigger className='font-semibold'>Is it accessible?</AccordionTrigger>
+              <AccordionContent className="flex items-left">
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger className='font-semibold'>TEST</AccordionTrigger>
+              <AccordionContent className="flex items-left">
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
       </div>
 
       <Footer />
