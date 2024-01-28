@@ -47,12 +47,17 @@ const ProfilePage = () => {
     const { user } = useUser();
     const addCoverLetter = useMutation(api.user.addCoverLetter);
     const params = useParams<{userId: string}>();
+
     const userData = useQuery(api.user.getByUserId, {
         userId: params.userId || "Error"
     });
 
     const posts = useQuery(api.userpost.getPostsMadeBy, {
         userId: userData?.userId || "Err"
+    })
+
+    const currUserData = useQuery(api.user.getByUserId, {
+        userId: user?.id || "Err"
     })
 
     const isYourPage = user?.id === params.userId
@@ -153,7 +158,7 @@ const ProfilePage = () => {
                 </div>
                 
                 <div className="pt-5"></div>
-                { userData?.resume_url && (isYourPage || userType === "PROF") && (
+                { userData?.resume_url && (isYourPage || currUserData?.userType === "PROF") && (
                 <div className="flex flex-row gap-x-3">
                     <div>
                     <AlertDialog>
@@ -208,7 +213,7 @@ const ProfilePage = () => {
                         <span>{userData?.bio}</span>
                     </div>
                 <div className="pt-5"></div>
-                { userData?.cover_letter && (userType === PROF || isYourPage) &&
+                { userData?.cover_letter && (currUserData?.userType === "PROF" || isYourPage) &&
                 <div>
                 <div className="flex flex-col bg-gray-300 dark:bg-neutral-700 p-6 rounded-3xl text-wrap break-words whitespace-break-spaces">
                     <b className="pb-2">Cover Letter:</b>
