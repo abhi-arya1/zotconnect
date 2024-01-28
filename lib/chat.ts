@@ -10,8 +10,7 @@ import {
 } from "@google/generative-ai";
 
 const MODEL_NAME = "gemini-pro";
-const CL_API_KEY = "AIzaSyB1UUlEU67DEt4AxUrw7iazRZSK9ZQ44XY"
-
+const CL_API_KEY = process.env.NEXT_PUBLIC_CL_GG_KEY || "Err"
 const CLgenAI = new GoogleGenerativeAI(CL_API_KEY);
 const CLmodel = CLgenAI.getGenerativeModel({ model: MODEL_NAME });
 
@@ -49,9 +48,9 @@ const generationConfig = {
   });
 
 
-  const CV_API_KEY = "AIzaSyD-_G7AlUYNSxrdDJS5H-4_Qhv1xY6s4dY"
+  const CV_API_KEY =process.env.NEXT_PUBLIC_CV_GG_KEY || "Err"
   
-  const CVgenAI = new GoogleGenerativeAI(CL_API_KEY);
+  const CVgenAI = new GoogleGenerativeAI(CV_API_KEY);
   const CVmodel = CVgenAI.getGenerativeModel({ model: MODEL_NAME });
 
   

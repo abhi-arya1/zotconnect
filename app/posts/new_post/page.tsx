@@ -102,7 +102,9 @@ const NewPostPage = () => {
 				</div>
 				<div className="pt-20"></div>
 				<InputWithButton 
-					onInputSubmit={(value) => {setTitle(value)}}
+					onInputSubmit={(value) => {setTitle(value); toast({
+						title: "Saved Title!"
+					});}}
 					onAddToList={(value) => {}}
 					buttonName="Save"
 					placeholder="Job Title"
@@ -113,7 +115,7 @@ const NewPostPage = () => {
 					setDesc(value.bio);
 					toast({
 						title: "Saved Job Description"
-					})}} 
+					});}} 
 				/>
 				</div>
 
