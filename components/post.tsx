@@ -1,4 +1,10 @@
+"use client";
+
 import React from 'react';
+import { Button } from './ui/button';
+import { useUser } from '@clerk/clerk-react';
+import { useQuery } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 
 interface IPost {
     title: string;
@@ -21,6 +27,11 @@ interface PostsListProps {
 }
 
 const Post = ({ post }: PostProps) => {
+    const { user } = useUser();
+    const userData = useQuery(api.user.getByUserId, {
+        userId: user?.id || "Error"
+    });
+
     return (
         <div>
         <div className="flex flex-col bg-gray-200 dark:bg-neutral-700 p-8 rounded-2xl">
@@ -31,9 +42,22 @@ const Post = ({ post }: PostProps) => {
             </div>
             <p className="break-words pb-5 leading-relaxed">{post.contents}</p>
 
-            <div><b className="text-muted-foreground font-normal">Preferred Majors:</b> {post.targetMajors.join(', ')}</div>
-            <div><b className="text-muted-foreground font-normal">Preferred Skills:</b> {post.targetSkills.join(', ')}</div>
-            <div><b className="text-muted-foreground font-normal">Preferred Years:</b> {post.targetYears.join(', ')}</div>
+            <div className="flex flex-row justify-between items-end">
+                <div>
+                    <div><b className="text-muted-foreground font-normal">Preferred Majors:</b> {post.targetMajors.join(', ')}</div>
+                    <div><b className="text-muted-foreground font-normal">Preferred Skills:</b> {post.targetSkills.join(', ')}</div>
+                    <div><b className="text-muted-foreground font-normal">Preferred Years:</b> {post.targetYears.join(', ')}</div>
+                </div>
+                { userData?.userType === "PROF" ? (
+                    <Button onClick={() => {}}>
+                        Refer A Student
+                    </Button>
+                ) : (
+                    <Button onClick={() => {}}>
+                        Apply Now
+                    </Button>
+                )}
+            </div>
         </div>
         <div className="pb-10"></div>
         </div>

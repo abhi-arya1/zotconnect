@@ -153,7 +153,7 @@ const NewPostPage = () => {
 					onInputSubmit={(value) => {}}
 					onAddToList={(value) => {addYear(value)}}
 					buttonName="Add"
-					placeholder="Recommended Years"
+					placeholder="Recommended Grad. Years"
 					clearInputOnAdd={true}
 				/>
 				{years.length !== 0 ? (
@@ -166,7 +166,7 @@ const NewPostPage = () => {
 					</div>
 				) : (
 					<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
-						<i>Add Years</i>
+						<i>Add Graduation Years (e.g. 2024, 2025, etc.)</i>
 					</div>
 				)}
 			</div>
