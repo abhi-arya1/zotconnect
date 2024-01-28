@@ -5,7 +5,7 @@ const SignupLayout = ({
 }) => {
     return (
         <div className="h-full dark:bg-[#1F1F1F]">
-            <main className="h-full">
+            <main className="h-full  dark:bg-[#1F1F1F]">
                 {children}
             </main>
         </div>

@@ -53,7 +53,7 @@ const Post = ({ post }: PostProps) => {
                         Refer A Student
                     </Button>
                 ) : (
-                    <Button onClick={() => {}}>
+                    <Button onClick={() => {window.open(`mailto:${post.email}`)}}>
                         Apply Now
                     </Button>
                 )}
