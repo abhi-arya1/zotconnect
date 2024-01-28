@@ -72,8 +72,8 @@ const LandingPage = () => {
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger className='font-semibold'>How do you use ZotConnect efficiently?</AccordionTrigger>
-              <AccordionContent className="flex items-left">
-              Here is a link to our YouTube demonstration that showcases all the features and how to use them!
+              <AccordionContent className="flex justify-start">
+              <p>Here is a link to our YouTube demonstration that showcases all the features and how to use them: <a className="underline" href="https://www.youtube.com/watch?v=QFD8afHcP_4" target="_blank">youtube.com/watch?v=QFD8afHcP_4</a></p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
