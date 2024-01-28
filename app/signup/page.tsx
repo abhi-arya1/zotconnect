@@ -150,7 +150,7 @@ const SignupPages = () => {
     <div className="h-full flex flex-col relative">
         
         <div className="relative flex flex-col justify-center items-center">
-            <div className="pt-36 text-shadow font-bold text-3xl relative z-10">
+            <div className="pt-20 text-shadow font-bold text-3xl relative z-10">
                 Welcome to ZotConnect, <span className="text-[#2563eb] dark:text-[#0390fc]">{user?.fullName}</span>!
                 <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-[600px] h-20 bg-gradient-to-r from-customDarkBlue to-customLightBlue blur-3xl rounded-full z-[-50]"></div>
             </div>

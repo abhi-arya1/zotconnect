@@ -19,11 +19,11 @@ import { Textarea } from "@/components/ui/textarea"
 const FormSchema = z.object({
   bio: z
     .string()
-    .min(30, {
-      message: "Info must be at least 30 characters.",
+    .min(50, {
+      message: "Info must be at least 50 characters.",
     })
-    .max(500, {
-      message: "Info must not be longer than 500 characters.",
+    .max(2000, {
+      message: "Info must not be longer than 2000 characters.",
     }),
 })
 

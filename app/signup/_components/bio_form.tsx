@@ -20,11 +20,11 @@ import { Textarea } from "@/components/ui/textarea"
 const FormSchema = z.object({
   bio: z
     .string()
-    .min(30, {
-      message: "Bio must be at least 30 characters.",
+    .min(20, {
+      message: "Bio must be at least 20 characters.",
     })
-    .max(160, {
-      message: "Bio must not be longer than 160 characters.",
+    .max(1000, {
+      message: "Bio must not be longer than 1000 characters.",
     }),
 })
 
@@ -53,7 +53,7 @@ export function TextareaForm({ onFormSubmit }: TextareaFormProps) {
               <FormControl>
                 <Textarea
                   placeholder="Hi, I'm Peter the Anteater!"
-                  className="resize-none"
+                  className="resize-none min-h-[140px]"
                   {...field}
                 />
               </FormControl>
