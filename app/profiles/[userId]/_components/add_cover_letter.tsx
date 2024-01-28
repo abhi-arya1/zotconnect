@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,21 +17,21 @@ import { Textarea } from "@/components/ui/textarea"
 
 
 const FormSchema = z.object({
-  post: z
-    .string()
-    .min(30, {
-      message: "Posts must be at least 30 characters.",
-    })
-    .max(500, {
-      message: "Posts must not be longer than 500 characters.",
-    }),
-})
+    post: z
+      .string()
+      .min(30, {
+        message: "Cover Letters must be at least 30 characters.",
+      })
+      .max(10000000, {
+        message: "Cover Letters must not be longer than 10000000 characters.",
+      }),
+  })
 
 type TextareaFormProps = {
   onFormSubmit: (data: z.infer<typeof FormSchema>) => void;
 };
 
-export function TextareaForm({ onFormSubmit }: TextareaFormProps) {
+export function CoverLetterForm({ onFormSubmit }: TextareaFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
@@ -43,28 +42,27 @@ export function TextareaForm({ onFormSubmit }: TextareaFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="pt-24">
         <FormField
           control={form.control}
           name="post"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>New Post</FormLabel>
+              <FormLabel className="pl-2">Add Cover Letter</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Hey, I'm Professor Peter! I'm looking for..."
-                  className="resize-none"
+                  placeholder="To whom it may concern..."
+                  className="resize-y"
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
-                make a post bro.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Save</Button>
+        <div className="flex pt-3 gap-x-2 justify-end items-left">
+            <Button type="submit" >Save</Button>
+        </div>
       </form>
     </Form>
   )

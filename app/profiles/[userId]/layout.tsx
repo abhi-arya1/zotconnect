@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import funFactsData from '@/uci_fun_facts.json';
 import { useState, useEffect } from "react";
 import { UploadResumeModal } from "@/components/modals/upload_modal";
+import { Toaster } from "@/components/ui/toaster";
 
 type FunFact = {
     fact: string;
@@ -51,6 +52,7 @@ const PostsLayout = ({
         <main className="h-full flex">
           {children}
         </main>
+        <Toaster />
         <UploadResumeModal />
     </div>
   );

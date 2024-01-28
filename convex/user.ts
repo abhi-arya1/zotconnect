@@ -103,6 +103,33 @@ export const addResume = mutation({
     } 
 })
 
+export const addCoverLetter = mutation({
+    args: {
+        userId: v.string(),
+        coverLetter: v.string()
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity(); 
+        if (!identity) {
+            throw new Error("Not Authenticated");
+        }
+        const userId = identity.subject; 
+        
+        const existingUser = await ctx.db
+        .query("user")
+        .filter(q => q.eq(q.field("userId"), args.userId))
+        .first();  
+
+        if (!existingUser) { throw new Error("Doesn't Exist!") }
+        if (existingUser.userId !== userId) { throw new Error("Unauthorized"); }
+
+        const docId = existingUser._id;
+
+        const data = await ctx.db.patch(docId, { cover_letter: args.coverLetter })
+        return data; 
+    } 
+})
+
 export const getByUserId = query({
     args: { userId: v.string() },
     handler: async (ctx, args) => {
@@ -146,6 +173,7 @@ export const getByUserId = query({
                 url: user.url,
                 skills: user.skills,
                 resume_url: user.resume_url,
+                cover_letter: user.cover_letter,
             };
         } else {
             throw new Error("Invalid userType");
