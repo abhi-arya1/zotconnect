@@ -20,15 +20,14 @@ const Sidebar: React.FC = () => {
 
     return (
         <div className="fixed left-0 top-0">
-        <div className="flex flex-col items-center justify-between h-screen w-20 p-15 bg-gray-300 dark:bg-neutral-700 rounded-r-3xl shadow-xl">
-            <Button variant='ghost' className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer" onClick={() => {router.push('/posts')}}>
+        <div className="flex flex-col items-center justify-between h-screen w-20 p-15 bg-gray-300 dark:bg-neutral-700 rounded-r-3xl shadow-xl pt-3">
+            <Button variant='ghost' className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer hover:rounded-r-3xl" onClick={() => {router.push('/posts')}}>
                 <Image 
                     src="/petrhead.png"
                     alt="Logo"
                     width={50}
                     height={40}
                     style={{ borderRadius: '10px', cursor: 'pointer' }}
-                    className="drop-shadow-2xl pt-8"
                 />
             </Button>
             
@@ -59,7 +58,7 @@ const Sidebar: React.FC = () => {
             
             <div className="flex flex-col items-center justify-center">
             <UserButton />
-            <div className="pt-5g pb-8">
+            <div className="pt-5 pb-8">
                 <Button variant="ghost" onClick={() => signOut()} className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer">
                     <LogOut className="h-7 w-7" />
                 </Button>
