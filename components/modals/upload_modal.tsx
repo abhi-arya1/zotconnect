@@ -78,7 +78,7 @@ export const UploadResumeModal = () => {
             <DialogContent className="items-center justify-center bg-gray-300 dark:bg-neutral-700">
                 <DialogHeader>
                     <h2 className="text-center text-lg font-semibold">
-                        Cover Image
+                        {`Upload Resume (Only One File, <1 MB)`}
                     </h2>
                 </DialogHeader>
                 <div>

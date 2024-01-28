@@ -47,10 +47,11 @@ const PostsLayout = ({
   }
 
   return (
-    <div className="h-full items-center justify-center flex">
+    <div className="h-full flex">
         <main className="h-full flex">
           {children}
         </main>
+        <UploadResumeModal />
     </div>
   );
 };
