@@ -1,3 +1,5 @@
+# ZotConnect
+
 ## Our Tech Stack
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -6,6 +8,9 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 
+- DevPost
+- [GitHub](https://github.com/abhi-arya1/zotconnect)
+- [View Site](https://zotconnect.vercel.app)
 
-## The deployed site can be viewed [here](https://zotconnect.vercel.app).
+
 
