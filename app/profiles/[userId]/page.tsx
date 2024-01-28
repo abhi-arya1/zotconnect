@@ -3,6 +3,15 @@
 import { ModeToggle } from "@/components/mode_toggle";
 import Sidebar from "@/components/sidebar";
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogDescription, AlertDialogTitle, AlertDialogCancel, AlertDialogFooter, AlertDialogAction } from "@/components/ui/alert-dialog";
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+  } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { UserButton, useUser } from "@clerk/clerk-react";
@@ -16,6 +25,7 @@ import { toast } from "@/components/ui/use-toast";
 import * as z from "zod"
 import { Spinner } from "@/components/spinner";
 import MarkdownContent from "@/components/render_markdown";
+import { ResumeForm } from "./_components/add_resume";
 
 const STUDENT = "STUDENT"
 const PROF = "PROF"
@@ -47,6 +57,7 @@ const ProfilePage = () => {
         ? `https://${userUrl}`
         : userUrl;
 
+    const [resumeText, setResumeText] = useState("");
     const [review, setReview] = useState("");
     const [CLloading, setCLLoading] = useState(false);
 
@@ -99,10 +110,7 @@ const ProfilePage = () => {
 
         try {
             setCLLoading(true);
-            // const resume_raw_text = await pdfUrlToText(userData?.resume_url);
-            const resume_raw_text = ''
-            console.log(resume_raw_text);
-            const response = await chatWithCoverLetterModel(`Please use STRICT Markdown Syntax and English Only, and provide a title of "Detailed Resume Review" as bolded text and then numbered bullet points for each section, with new lines in MARKDOWN SYNTAX in between each section. Please provide a detailed review of the following Resume. Please include SPECIFIC DETAILED FEEDBACK that directly applies to this letter and this letter alone. If you are making a suggestion, provide context and where it is in the text: ${resume_raw_text}`);
+            const response = await chatWithResumeModel(`Please use STRICT Markdown Syntax and English Only, and provide a title of "Detailed Resume Review" as bolded text and then numbered bullet points for each section, with new lines in MARKDOWN SYNTAX in between each section. Please provide a detailed review of the following Resume. Do NOT provide feedback on Formatting. Please include SPECIFIC DETAILED FEEDBACK that follows Modern Job Resume Trends and directly and exactly applies to this letter and this letter alone. If you are making a suggestion, provide context and where it is in the text: ${resumeText}`);
             setReview(response.text()); // Assuming response has a text method
             setCLLoading(false);
             } catch (error) {
@@ -135,6 +143,8 @@ const ProfilePage = () => {
                 </div>
                 <div className="pt-5"></div>
                 { userData?.resume_url && (
+                <div className="flex flex-row gap-x-3">
+                    <div>
                     <AlertDialog>
                     <AlertDialogTrigger asChild>
                     <Button>Show Resume</Button>
@@ -149,10 +159,35 @@ const ProfilePage = () => {
                     <AlertDialogFooter>
                         <AlertDialogCancel>Back</AlertDialogCancel>
                         <AlertDialogAction onClick={() => {window.open(userData.resume_url)}}>Open</AlertDialogAction>
-                        <AlertDialogAction onClick={() => {reviewResumeWithAI()}}><Sparkles className="h-7 w-7 pr-2" />Review with AI</AlertDialogAction>
                     </AlertDialogFooter>
                     </AlertDialogContent>
-                </AlertDialog>
+                    </AlertDialog>
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <Drawer>
+                        <DrawerTrigger>
+                            <div role="button" className="h-10 font-medium px-4 py-2 pl-2 text-sm flex flex-row bg-primary text-primary-foreground hover:bg-primary/90 rounded-md items-center pr-4">
+                                <Sparkles className="h-5 w-5" /><span className="pl-1">Review Resume with AI</span>
+                            </div>
+                        </DrawerTrigger>
+                        <DrawerContent className="flex items-center justify-center">
+                            <DrawerHeader>
+                            <DrawerTitle>Please Copy and Paste your <a href={userData.resume_url} className="underline dark:text-customLightBlue text-customDarkBlue" target="_blank">Resume PDF</a> Text into this Box</DrawerTitle>
+                            <div>
+                                <ResumeForm onFormSubmit={(value) => {toast({title: "Saved"}); setResumeText(value.post)}} />
+                            </div>
+                            </DrawerHeader>
+                            <DrawerFooter>
+                            <DrawerClose className="flex flex-col">
+                                <Button onClick={() => {if(resumeText){reviewResumeWithAI()}}}>Submit</Button>
+                                <div className="pt-2"></div>
+                                <Button variant="outline">Cancel</Button>
+                            </DrawerClose>
+                            </DrawerFooter>
+                        </DrawerContent>
+                        </Drawer>
+                    </div>
+                    </div>
                 )}
                 <div className="pt-5"></div>
                     <div className="bg-gray-300 dark:bg-neutral-700 p-6 max-w-[500px] rounded-3xl text-wrap break-words">

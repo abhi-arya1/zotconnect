@@ -3,10 +3,11 @@ import Image from 'next/image';
 import { DoorOpen, PencilLine, FilePlus, NotepadText, LogOut, UserRound } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { Button } from '@/components/ui/button';
-import { UserButton, useClerk, useUser } from '@clerk/clerk-react';
+import { useClerk, useUser } from '@clerk/clerk-react';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useResume } from '@/hooks/use-file-upload';
+
 
 const Sidebar: React.FC = () => {
     const router = useRouter();
