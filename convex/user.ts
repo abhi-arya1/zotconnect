@@ -76,6 +76,33 @@ export const createProf = mutation({
     }
 })
 
+export const addResume = mutation({
+    args: {
+        userId: v.string(),
+        resumeUrl: v.string()
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity(); 
+        if (!identity) {
+            throw new Error("Not Authenticated");
+        }
+        const userId = identity.subject; 
+        
+        const existingUser = await ctx.db
+        .query("user")
+        .filter(q => q.eq(q.field("userId"), args.userId))
+        .first();  
+
+        if (!existingUser) { throw new Error("Doesn't Exist!") }
+        if (existingUser.userId !== userId) { throw new Error("Unauthorized"); }
+
+        const docId = existingUser._id;
+
+        const data = await ctx.db.patch(docId, { resume_url: args.resumeUrl})
+        return data; 
+    } 
+})
+
 export const getByUserId = query({
     args: { userId: v.string() },
     handler: async (ctx, args) => {
@@ -103,7 +130,8 @@ export const getByUserId = query({
                 userType: user.userType,
                 bio: user.bio,
                 name: user.name,
-                url: user.url
+                url: user.url,
+                resume_url: user.resume_url
             };
         } else if (user.userType === "STUDENT") {
             // Structure the document for userType "STUDENT" with additional attributes
@@ -115,7 +143,8 @@ export const getByUserId = query({
                 year: user.year,
                 major: user.major,
                 url: user.url,
-                skills: user.skills
+                skills: user.skills,
+                resume_url: user.resume_url,
             };
         } else {
             throw new Error("Invalid userType");

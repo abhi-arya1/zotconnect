@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { Home, Cog, Pencil, SidebarClose, DoorOpen, PencilLine, FilePlus, NotepadText, LogOut, User } from 'lucide-react';
+import { DoorOpen, PencilLine, FilePlus, NotepadText, LogOut } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { Button } from '@/components/ui/button';
 import { UserButton, useClerk, useUser } from '@clerk/clerk-react';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
+import { useResume } from '@/hooks/use-file-upload';
 
 const Sidebar: React.FC = () => {
     const router = useRouter();
     const { user } = useUser();
     const { signOut } = useClerk();
+    const resume = useResume();
 
     const userData = useQuery(api.user.getByUserId, {
         userId: user?.id || "Error"
@@ -45,7 +47,7 @@ const Sidebar: React.FC = () => {
                 </Button>
             </div>
             <div className="flex items-center justify-center pb-5">
-                <Button variant='ghost' className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer" onClick={() => {router.push('/posts/new_resume')}}>
+                <Button variant='ghost' className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer" onClick={resume.onOpen}>
                     <FilePlus className="pt-2 h-9 w-9" />
                 </Button>
             </div>

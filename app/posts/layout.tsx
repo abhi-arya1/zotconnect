@@ -4,6 +4,7 @@ import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 import funFactsData from '@/uci_fun_facts.json';
 import { useState, useEffect } from "react";
+import { UploadResumeModal } from "@/components/modals/upload_modal";
 
 type FunFact = {
     fact: string;
@@ -47,9 +48,10 @@ const PostsLayout = ({
 
   return (
     <div className="h-full flex">
-      <main className="flex-1 h-full overflow-y-auto dark:bg-[#1F1F1F]">
-        {children}
-      </main>
+        <main className="flex-1 h-full overflow-y-auto dark:bg-[#1F1F1F]">
+          {children}
+        </main>
+        <UploadResumeModal />
     </div>
   );
 };

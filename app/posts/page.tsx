@@ -3,6 +3,7 @@
 import { ModeToggle } from "@/components/mode_toggle";
 import { FilePlus, PencilLine, PlusSquare, SquarePen } from "lucide-react";
 import Sidebar from "./_components/sidebar";
+  
 
 import {
     DropdownMenu,
@@ -12,12 +13,14 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+
 import { useRouter } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useUser } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import PostsList from "@/components/post";
+import { useResume } from "@/hooks/use-file-upload";
 
 interface IPost {
     title: string;
@@ -33,6 +36,7 @@ interface IPost {
 const PostsPage = () => {
     const router = useRouter()
     const [posts, setPosts] = useState<IPost[]>([]);
+    const resume = useResume();
 
     const{user} = useUser();
     const userData = useQuery(api.user.getByUserId, {
@@ -76,7 +80,7 @@ const PostsPage = () => {
                         New Post
                     </DropdownMenuItem>
                 }
-                <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {router.push('/posts/new_resume')}}>
+                <DropdownMenuItem className="hover:cursor-pointer" onClick={resume.onOpen}>
                     <div className="pr-2">
                         <FilePlus className="h-4 w-4" />
                     </div>
