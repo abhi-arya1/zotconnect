@@ -174,6 +174,7 @@ const ProfilePage = () => {
                     </AlertDialogContent>
                     </AlertDialog>
                     </div>
+                    {isYourPage && 
                     <div className="flex items-center justify-center">
                         <Drawer>
                         <DrawerTrigger>
@@ -198,6 +199,7 @@ const ProfilePage = () => {
                         </DrawerContent>
                         </Drawer>
                     </div>
+                    }   
                     </div>
                 )}
                 <div className="pt-5"></div>
@@ -237,7 +239,7 @@ const ProfilePage = () => {
                     </div>
                 )}
             </div>
-            <div className="pl-36 pr-36 pb-24 overflow-scroll">
+            <div className="pl-36 pr-10 pb-24 overflow-scroll max-w-[1000px]">
                 {userType === STUDENT ? (
                 <div className="pt-20">
                 {CLloading && <div className="flex flex-row items-center justify-center gap-x-2 pt-5"><Sparkles /> Gemini is Loading...<Spinner size="lg" /></div>}
