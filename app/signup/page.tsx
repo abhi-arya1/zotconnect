@@ -73,6 +73,7 @@ const SignupPages = () => {
                 major: majorInterest,
                 url: url,
                 skills: studentSkills,
+                email: user?.primaryEmailAddress?.emailAddress || "Err"
             })
             .then(() => {
                 router.push('/posts');
@@ -85,6 +86,7 @@ const SignupPages = () => {
                 major: majorInterest,
                 userType: userType,
                 url: url,
+                email: user?.primaryEmailAddress?.emailAddress || "Err"
             })
             .then(() => {
                 router.push('/posts');

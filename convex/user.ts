@@ -1,12 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { Doc, Id } from "./_generated/dataModel";
 
-const user_post = {
-    "title": v.string(),
-    "content": v.string(),
-    "email": v.string(),
-}
 
 export const createStudent = mutation({
     args: {
@@ -18,6 +12,7 @@ export const createStudent = mutation({
         bio: v.string(),
         url: v.string(),
         skills: v.array(v.string()),
+        email: v.string(),
     },
     handler: async (context, args) => {
         const identity = await context.auth.getUserIdentity(); 
@@ -38,6 +33,7 @@ export const createStudent = mutation({
             major: args.major,
             url: args.url,
             skills: args.skills,
+            email: args.email,
         });
 
         return document; 
@@ -52,6 +48,7 @@ export const createProf = mutation({
         major: v.string(),
         bio: v.string(),
         url: v.string(),
+        email: v.string(),
     },
     handler: async (context, args) => {
         const identity = await context.auth.getUserIdentity(); 
@@ -70,6 +67,7 @@ export const createProf = mutation({
             major: args.major,
             name: args.name,
             url: args.url,
+            email: args.email,
         });
 
         return document; 
@@ -159,7 +157,8 @@ export const getByUserId = query({
                 name: user.name,
                 url: user.url,
                 major: user.major,
-                resume_url: user.resume_url
+                resume_url: user.resume_url,
+                email: user.email,
             };
         } else if (user.userType === "STUDENT") {
             // Structure the document for userType "STUDENT" with additional attributes
@@ -174,6 +173,7 @@ export const getByUserId = query({
                 skills: user.skills,
                 resume_url: user.resume_url,
                 cover_letter: user.cover_letter,
+                email: user.email,
             };
         } else {
             throw new Error("Invalid userType");

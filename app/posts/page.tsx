@@ -97,7 +97,7 @@ const PostsPage = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center w-2/3 pt-40 pb-40">
-            <div className="flex flex-row justify-center"><h1 className="pb-20 pr-5 text-6xl font-bold">Time to <span className="dark:text-customLightBlue text-customDarkBlue">Connect</span></h1><Unplug className="h-14 w-14"/> </div>
+            <div className="flex flex-row justify-center"><h1 className="pr-5 text-6xl font-bold pb-20">Connections <span className="dark:text-customLightBlue text-customDarkBlue">Curated</span> For You</h1><Unplug className="h-14 w-14"/> </div>
             { validPosts !== undefined ? (
                 <PostsList posts={validPosts} />
             ) : (

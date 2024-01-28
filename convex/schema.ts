@@ -6,11 +6,6 @@ import { v } from "convex/values";
 // or
 // "PROFESSOR"
 
-const user_post = {
-    "title": v.string(),
-    "content": v.string(),
-    "email": v.string(),
-}
 
 export default defineSchema({
     user: defineTable({
@@ -24,6 +19,7 @@ export default defineSchema({
         cover_letter: v.optional(v.string()),
         url: v.optional(v.string()),
         skills: v.optional(v.array(v.string())),
+        email: v.optional(v.string()),
     })
     .index("by_userType", ["userType"])
     .index("by_skills", ["skills"]),

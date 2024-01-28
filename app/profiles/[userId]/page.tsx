@@ -148,6 +148,7 @@ const ProfilePage = () => {
                             <i className="text-black">{userData?.major}, Class of {userData?.year}</i>
                         )}
                         <a href={formattedUserUrl} target="_blank" className="underline pt-2 text-black">{userData?.url}</a>
+                        <a href={`mailto:${userData?.email}`} className="underline pt-1 text-black">{userData?.email}</a>
                     </div>
                 </div>
                 

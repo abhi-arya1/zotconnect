@@ -52,7 +52,7 @@ export function TextareaForm({ onFormSubmit }: TextareaFormProps) {
               <FormControl>
                 <Textarea
                   placeholder="Add information about the position here..."
-                  className="resize-none"
+                  className="resize-y"
                   {...field}
                 />
               </FormControl>

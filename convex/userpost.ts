@@ -68,6 +68,7 @@ export const getPostsMadeBy = query({
         }
     })
 
+
 export const addApplicant = mutation({
     args: {
         userId: v.string(), 
@@ -137,7 +138,9 @@ export const getApplicantsByName = query({
                 .filter(q => q.eq(q.field("userId"), applicantId))
                 .first();
             if (user) {
-                users.push([user.name, user.userId]);
+                let email;
+                user.email ? email = user.email : email = ""
+                users.push([user.name, user.userId, email]);
             }
         }
 
@@ -146,7 +149,6 @@ export const getApplicantsByName = query({
         return users;
     }
 });
-
 
 
 
@@ -174,17 +176,19 @@ export const getPostsByUser = query({
             .query("userpost")
             .collect();
 
-        let skills: string[] = user.skills ? user.skills.map(skill => skill.toLowerCase()) : [];
-        let major: string = user.major ? user.major : 'ERROR'
-        let year: string = user.year ? user.year : "ERROR"
+        let skills = user.skills ? user.skills.map(skill => skill.toLowerCase()) : [];
+        let userMajor = user.major ? user.major.toLowerCase() : 'ERROR';
+        //let userYear = user.year ? user.year.toLowerCase() : "ERROR";
 
-        // Check if user type is STUDENT
         if (user.userType.toLowerCase() === "student") {
-            let filteredPosts = posts.filter(post => 
-                (skills.length > 0 && post.targetSkills.some(skill => skills.includes(skill.toLowerCase()))) ||
-                (user.major && post.targetMajors.some(major => major.toLowerCase() === major.toLowerCase())) ||
-                (user.year && post.targetYears.some(year => year.toLowerCase() === year.toLowerCase()))
-            );
+            let filteredPosts = posts.filter(post => {
+                let postSkills = post.targetSkills.map(skill => skill.toLowerCase());
+                let postMajors = post.targetMajors.map(major => major.toLowerCase());
+                //let postYears = post.targetYears.map(year => year.toLowerCase());
+
+                return (skills.length > 0 && postSkills.some(skill => skills.includes(skill))) &&
+                       (user.major && postMajors.includes(userMajor))
+            });
 
             return filteredPosts;
         } else {

@@ -7,7 +7,7 @@ import { Button } from "./ui/button"
 import { useRouter } from "next/navigation"
 
 interface ApplicantProps {
-    postApplications: string[][]
+    postApplications: (string | undefined)[][]
 }
 
 
@@ -34,7 +34,7 @@ export function ApplicantsCollapsible({ postApplications }: ApplicantProps) {
       <CollapsibleContent className="space-y-2 w-1/3">
         {postApplications.map((userTuple) => (
           <div key={userTuple[1]} role="button" onClick={() => window.open(`/profiles/${userTuple[1]}`, "_self")} className="rounded-md font-mono text-sm px-2 p-2 hover:bg-gray-300 dark:hover:bg-neutral-800">
-            {'>>'} {userTuple[0]}
+            {'>>'} {userTuple[0]}, <i><a href={`mailto:${userTuple[2]}`}>{userTuple[2]}</a></i>
           </div>
         ))}
       </CollapsibleContent>
