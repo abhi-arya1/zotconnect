@@ -1,7 +1,7 @@
 "use client";
 
 import { ModeToggle } from "@/components/mode_toggle";
-import { FilePlus, PencilLine, PlusSquare, SquarePen } from "lucide-react";
+import { FilePlus, PencilLine, Plug, PlusSquare, SquarePen, Unplug } from "lucide-react";
 import Sidebar from "../../components/sidebar";
   
 
@@ -96,12 +96,13 @@ const PostsPage = () => {
             </DropdownMenu>
         </div>
 
-        <div className="items-center justify-center w-2/3 pt-56 pb-40">
+        <div className="flex flex-col items-center justify-center w-2/3 pt-40 pb-40">
+            <div className="flex flex-row justify-center"><h1 className="pb-20 pr-5 text-6xl font-bold">Time to <span className="dark:text-customLightBlue text-customDarkBlue">Connect</span></h1><Unplug className="h-14 w-14"/> </div>
             { validPosts !== undefined ? (
                 <PostsList posts={validPosts} />
             ) : (
                 <div>
-                    No Applicable Positions Found 
+                    No Applicable Positions Found, Check Back Later!
                 </div>
             )}
         </div>

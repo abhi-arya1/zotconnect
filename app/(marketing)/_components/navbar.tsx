@@ -30,7 +30,7 @@ export const Navbar = () => {
                     className="drop-shadow-2xl"
                 />
             </Link>
-            <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
+            <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-4">
                 {isLoading && (
                     <div>
                         <Spinner />

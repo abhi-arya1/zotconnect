@@ -131,21 +131,26 @@ const ProfilePage = () => {
             <div className="fixed top-0 p-4 right-0"><ModeToggle /></div>
         <div className="flex flex-row">
             <div className="flex flex-col items-left justify-left pl-48 pt-20 max-w-[750px]">
-                <div className="bg-gray-300 dark:bg-neutral-700 p-6 pr-7 flex flex-row w-30 h-30 items-center justify-between rounded-3xl">
+                <div className="bg-gray-300 dark:bg-neutral-700 p-6 pr-7 flex flex-row w-30 h-30 items-center justify-between rounded-3xl"
+                style={{
+                    background: 'linear-gradient(to right, rgb(28, 178, 212), rgb(58, 114, 237))',
+                    backdropFilter: 'blur(20px)'  
+                }}>
                     <div className="flex flex-col">
-                        {isYourPage && <span className="pb-3">Welcome, </span>}
+                        {isYourPage && <span className="pb-3 text-black">Welcome, </span>}
                         <div className="flex flex-row gap-x-2">
-                            {isYourPage && <UserButton />}
-                            <span className="font-bold text-3xl pb-2">{userData?.name}</span>
+                            {isYourPage && <div className="drop-shadow-2xl"><UserButton /></div>}
+                            <span className="font-bold text-3xl text-gray-900 pb-2">{userData?.name}</span>
                         </div>
                         {userType === PROF ? (
-                            <i className="text-muted-foreground">Research Focus: {userData?.major}</i>
+                            <i className="text-black">Research Focus: {userData?.major}</i>
                         ) : (
-                            <i className="text-muted-foreground">{userData?.major}, Class of {userData?.year}</i>
+                            <i className="text-black">{userData?.major}, Class of {userData?.year}</i>
                         )}
-                        <a href={formattedUserUrl} target="_blank" className="underline pt-2 text-customDarkBlue dark:text-customLightBlue">{userData?.url}</a>
+                        <a href={formattedUserUrl} target="_blank" className="underline pt-2 text-black">{userData?.url}</a>
                     </div>
                 </div>
+                
                 <div className="pt-5"></div>
                 { userData?.resume_url && (isYourPage || userType === "PROF") && (
                 <div className="flex flex-row gap-x-3">
@@ -245,6 +250,7 @@ const ProfilePage = () => {
                     }   
                 </div>
                 ) }
+    
             </div>
         </div>
         </div>

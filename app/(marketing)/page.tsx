@@ -6,6 +6,7 @@ import TwoColumnSectionLeftImg from './_components/two_column_section_imgleft';
 import TwoColumnSectionRightImg from './_components/two_column_section_imgright';
 
 const LandingPage = () => {
+
   return (
     <div className="h-full flex flex-col dark:bg-[#1F1F1F]">
       <div className="flex items-center justify-center h-screen relative dark:bg-[#1F1F1F]">
@@ -41,6 +42,11 @@ const LandingPage = () => {
                 .pauseFor(600)
             }}
         />
+
+        {/* TODO: ADD LARGE SIGN UP HERE: 
+        <Button >
+
+        </Button> */}
         <TwoColumnSectionLeftImg title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
 
         <TwoColumnSectionRightImg title='Get Your Resume Vetted' description='Harness the power of trained AI technology to get valuable feedback on your resume.'/>
