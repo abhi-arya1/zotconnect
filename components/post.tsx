@@ -8,6 +8,7 @@ import { api } from '@/convex/_generated/api';
 import { query } from '@/convex/_generated/server';
 import { ConfirmModal } from './modals/confirm_modal';
 import { ApplicantsCollapsible } from './applicantsCollapsible';
+import Link from 'next/link';
 
 interface IPost {
     title: string;
@@ -66,9 +67,11 @@ const Post = ({ post }: PostProps) => {
                     <div><b className="text-muted-foreground font-normal">Preferred Years:</b> {post.targetYears.join(', ')}</div>
                 </div>
                 { userData?.userType === "PROF" ? (
-                    <Button onClick={() => {}}>
-                        Refer A Student
-                    </Button>
+                    <Link href={`mailto:${post.email}`}>
+                        <Button asChild>
+                            Refer A Student
+                        </Button>
+                    </Link>
                 ) : (
                     <div>
                     {!inApplicants &&
