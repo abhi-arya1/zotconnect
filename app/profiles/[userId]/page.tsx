@@ -131,7 +131,7 @@ const ProfilePage = () => {
             <div className="fixed top-0 p-4 right-0"><ModeToggle /></div>
         <div className="flex flex-row">
             <div className="flex flex-col items-left justify-left pl-48 pt-20 max-w-[750px]">
-                <div className="bg-gray-300 dark:bg-neutral-700 p-6 pr-7 flex flex-row w-30 h-30 items-center justify-between rounded-3xl"
+                <div className="bg-gray-300 drop-shadow-lg dark:bg-neutral-700 p-6 pr-7 flex flex-row w-30 h-30 items-center justify-between rounded-3xl"
                 style={{
                     background: 'linear-gradient(to right, rgb(28, 178, 212), rgb(58, 114, 237))',
                     backdropFilter: 'blur(20px)'  
