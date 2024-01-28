@@ -7,6 +7,7 @@ import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { query } from '@/convex/_generated/server';
 import { ConfirmModal } from './modals/confirm_modal';
+import { ApplicantsCollapsible } from './applicantsCollapsible';
 
 interface IPost {
     title: string;
@@ -97,12 +98,9 @@ const Post = ({ post }: PostProps) => {
                 )}
             </div>
             {userData?.userType === "PROF" && postApplications?.length !== 0 &&
-                <div className="pt-4">
-                    <h1 className="underline">Application Profiles</h1>
-                   {postApplications?.map((userTuple) => (
-                        <li key={userTuple[0]}><a href={`/profiles/${userTuple[1]}`}>{userTuple[0]}</a></li>
-                   ))}
-                </div>
+            <div className="pt-4">
+                <ApplicantsCollapsible postApplications={postApplications || []} />
+            </div>
             }
         </div>
         <div className="pb-10"></div>

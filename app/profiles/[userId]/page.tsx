@@ -211,9 +211,9 @@ const ProfilePage = () => {
                 }
                 {userType === 'STUDENT' && (
                     <div>
-                        <div className="flex flex-row gap-x-2 text-wrap">
+                        <div className="flex flex-row gap-x-2 pt-1 pb-4 overflow-auto" style={{ maxWidth: 'none' }}>
                             {userData?.skills?.map(skill => (
-                                <div key={skill} className="bg-gray-300 text-muted-foreground dark:bg-neutral-700 p-3 rounded-xl">
+                                <div key={skill} className="bg-gray-300 text-muted-foreground max-h-[45px] dark:bg-neutral-700 p-3 rounded-xl text-nowrap">
                                     {skill}
                                 </div>
                             ))}
