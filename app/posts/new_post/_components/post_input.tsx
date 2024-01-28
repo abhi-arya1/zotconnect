@@ -26,7 +26,7 @@ export function InputWithButton({ onInputSubmit, placeholder, buttonName, clearI
 
   const handleSubmit = () => {
     if (onInputSubmit && inputValue !== '') {
-      if (placeholder === "Recommended Majors (NO Abbrev.)" || placeholder === "Recommended Skills" || placeholder === "Recommended Years") {
+      if (placeholder === "Recommended Majors (NO Abbrev.)" || placeholder === "Recommended Skills" || placeholder === "Recommended Grad. Years") {
         onAddToList(inputValue);
         if(clearInputOnAdd) { setInputValue('') }   
       } else {

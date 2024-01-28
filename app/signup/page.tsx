@@ -232,6 +232,10 @@ const SignupPages = () => {
                     <div>Please Select A Role, either <span className="text-[#2563eb] dark:text-[#0390fc]">Student</span> or <span className="text-[#2563eb] dark:text-[#0390fc]">Professor</span></div>
                 )}
             </div>
+
+            <div className="flex items-center justify-center pb-10">
+				<p>Please complete and <span><i className="text-blue-400 font-bold">save</i></span> all Fields to Submit</p>
+			</div>
             
             {userType && bio && url &&
                 <div className="pt-20">

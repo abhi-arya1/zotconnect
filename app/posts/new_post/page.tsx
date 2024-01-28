@@ -171,6 +171,10 @@ const NewPostPage = () => {
 				)}
 			</div>
 
+			<div className="flex items-center justify-center pb-10">
+				<p>Please complete and <span><i className="text-blue-400 font-bold">save</i></span> all Fields to Submit</p>
+			</div>
+
 
 			{ majors.length !== 0 && years.length !== 0 && studentSkills.length !== 0 && title && desc &&
 				<div className="flex items-center justify-center pt-10 pb-20">
