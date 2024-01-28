@@ -56,24 +56,30 @@ const LandingPage = () => {
         <Button >
 
         </Button> */}
-        <TwoColumnSectionLeftImg title='Explore New Opportunities' description='Discover a world of connections and opportunities with ZotConnect. Connect with alumni, network with professionals, and explore new career paths.'/>
-        <TwoColumnSectionRightImg title='Get Your Resume Vetted' description='Harness the power of trained AI technology to get valuable feedback on your resume.'/>
-        <TwoColumnSectionLeftImgSecond title='Professor Utilities' description='Harness the power of trained AI technology to get valuable feedback on your resume.' />
-        <TwoColumnSectionRightImgSecond title='Professor Utilities' description='Harness the power of trained AI technology to get valuable feedback on your resume.'/>
+        <TwoColumnSectionLeftImg title='Connections Tailored to You' description='Discover a world of connections and opportunities that align with your interests and experiences.'/>
+        <TwoColumnSectionRightImg title='Get Your Resume Vetted' description='Harness the power of trained AI technology to get valuable feedback on your resume and cover letter.'/>
+        <TwoColumnSectionLeftImgSecond title='Tools for Professors' description='Create precise job listings and find your ideal candidates.' />
+        <TwoColumnSectionRightImgSecond title='Build Your Profile' description='In ZotConnect, your profile has the power of a resume and the simplicity of a note. Build, Improve, Get Hired!'/>
 
         <div className='text-2xl font-extrabold pt-52 pb-5' >FAQs</div>
           <div className='mb-15'>
           <Accordion type="single" collapsible className='flex flex-col items-left pl-20 pr-20 pb-25'>
             <AccordionItem value="item-1">
-              <AccordionTrigger className='font-semibold'>Is it accessible?</AccordionTrigger>
-              <AccordionContent className="flex items-left">
-                Yes. It adheres to the WAI-ARIA design pattern.
+              <AccordionTrigger className='font-semibold'>What makes ZotConnect different from other professional tools, like LinkedIn?</AccordionTrigger>
+              <AccordionContent className="flex justify-start">
+                <p>ZotConnect focuses mainly on student and professor relations while other platforms, such as LinkedIn, focus on recruitment for corporate jobs. This allows for a platform built <b> specifically </b> for communication!</p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger className='font-semibold'>TEST</AccordionTrigger>
+              <AccordionTrigger className='font-semibold'>How do you use ZotConnect efficiently?</AccordionTrigger>
               <AccordionContent className="flex items-left">
-                Yes. It adheres to the WAI-ARIA design pattern.
+              Here is a link to our YouTube demonstration that showcases all the features and how to use them!
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger className='font-semibold'>Is my data secure with ZotConnect?</AccordionTrigger>
+              <AccordionContent className="flex items-left">
+                Yes! Student profiles can only be viewed by professors that are hiring and every step of the way is authenticated. Enhanced security updates are to come.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
