@@ -131,6 +131,7 @@ export const getByUserId = query({
                 bio: user.bio,
                 name: user.name,
                 url: user.url,
+                major: user.major,
                 resume_url: user.resume_url
             };
         } else if (user.userType === "STUDENT") {

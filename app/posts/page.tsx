@@ -2,7 +2,7 @@
 
 import { ModeToggle } from "@/components/mode_toggle";
 import { FilePlus, PencilLine, PlusSquare, SquarePen } from "lucide-react";
-import Sidebar from "./_components/sidebar";
+import Sidebar from "../../components/sidebar";
   
 
 import {

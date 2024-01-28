@@ -38,7 +38,7 @@ const Post = ({ post }: PostProps) => {
             <h3 className="font-bold text-2xl pb-4">{post.title}</h3>
             <div className="flex flex-row text-muted-foreground pb-2">
                 <img src={post.pfpUrl} alt="Image" className="rounded-full h-5 w-5" />
-                <span className="pl-2 pb-2">{post.name}, {post.email}</span>
+                <span className="pl-2 pb-2"><a href={post.userId} className="underline">{post.name}</a>, <a href={`mailto:${post.email}`} className="underline">{post.email}</a></span>
             </div>
             <p className="break-words pb-5 leading-relaxed">{post.contents}</p>
 

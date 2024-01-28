@@ -219,7 +219,7 @@ const SignupPages = () => {
                             onInputSubmit={handleMajorInterestSubmit}
                             placeholder="Research Interest or Field"
                             buttonName="Save"
-                            onAddToList={(value: string) => {}}
+                            onAddToList={(value: string) => {setMajorInterest(value)}}
                         />
                         <InputWithButton
                             onInputSubmit={handleURLSubmit}

@@ -22,7 +22,6 @@ export default defineSchema({
         major: v.optional(v.string()),
         resume_url: v.optional(v.string()),
         cover_letter: v.optional(v.string()),
-        research_area: v.optional(v.string()),
         url: v.optional(v.string()),
         skills: v.optional(v.array(v.string())),
     })

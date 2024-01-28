@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { DoorOpen, PencilLine, FilePlus, NotepadText, LogOut } from 'lucide-react';
+import { DoorOpen, PencilLine, FilePlus, NotepadText, LogOut, UserRound } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { Button } from '@/components/ui/button';
 import { UserButton, useClerk, useUser } from '@clerk/clerk-react';
@@ -35,7 +35,7 @@ const Sidebar: React.FC = () => {
             
             <div>
             { userType === "PROF" && 
-                <div className="flex items-center">
+                <div className="flex items-center pb-4">
                 <Button variant='ghost' className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer" onClick={() => {router.push('/posts/new_post')}}>
                     <PencilLine className="pt-2 h-9 w-9" />
                 </Button>
@@ -59,7 +59,9 @@ const Sidebar: React.FC = () => {
             </div>
             
             <div className="flex flex-col items-center justify-center">
-            <UserButton />
+                <Button variant='ghost' className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer" onClick={() => {router.push(`/profiles/${userData?.userId}`)}}>
+                    <UserRound className="h-7 w-7" />
+                </Button>
             <div className="pt-5 pb-8">
                 <Button variant="ghost" onClick={() => signOut()} className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer">
                     <LogOut className="h-7 w-7" />
