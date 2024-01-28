@@ -80,7 +80,7 @@ const ProfilePage = () => {
 
     const reviewCLWithAI = async () => {
         toast({
-            title: "Google Gemini is Loading a Cover Letter Review"
+            title: "Google Gemini is loading a Cover Letter Review"
         })
 
         if(!userData?.cover_letter) {
@@ -103,7 +103,7 @@ const ProfilePage = () => {
 
     const reviewResumeWithAI = async () => {
         toast({
-            title: "Google Gemini is Loading a Resume Review"
+            title: "Google Gemini is loading a Resume Review"
         })
 
         if(!userData?.resume_url) {
@@ -177,14 +177,14 @@ const ProfilePage = () => {
                         </DrawerTrigger>
                         <DrawerContent className="flex items-center justify-center">
                             <DrawerHeader>
-                            <DrawerTitle>Please Copy and Paste your <a href={userData.resume_url} className="underline dark:text-customLightBlue text-customDarkBlue" target="_blank">Resume PDF</a> Text into this Box</DrawerTitle>
+                            <DrawerTitle>Please Copy and Paste your <a href={userData.resume_url} className="underline dark:text-customLightBlue text-customDarkBlue" target="_blank">Resume PDF</a> Text into this Box and <i>Save:</i></DrawerTitle>
                             <div>
                                 <ResumeForm onFormSubmit={(value) => {toast({title: "Saved"}); setResumeText(value.post)}} />
                             </div>
                             </DrawerHeader>
                             <DrawerFooter>
                             <DrawerClose className="flex flex-col">
-                                <Button onClick={() => {if(resumeText){reviewResumeWithAI()}}}>Submit</Button>
+                                <Button onClick={() => {if(resumeText){reviewResumeWithAI()}}}>Review</Button>
                                 <div className="pt-2"></div>
                                 <Button variant="outline">Cancel</Button>
                             </DrawerClose>
@@ -223,7 +223,7 @@ const ProfilePage = () => {
                                 <CoverLetterForm onFormSubmit={onCLSubmit} />
                                 <div className="flex flex-row justify-end items-left pt-2 pb-10">
                                     <Button onClick={() => {reviewCLWithAI()}}>
-                                        <Sparkles className="h-7 w-7 pr-2" />Review with AI
+                                        <Sparkles className="h-7 w-7 pr-2" />Review Cover Letter with AI
                                     </Button>
                                 </div>
                             </div>
@@ -241,7 +241,7 @@ const ProfilePage = () => {
                 <div className="pt-20">
                     <h1 className="font-bold text-3xl pb-8">{userData?.name}&apos;s Job Postings</h1>
                     {posts && 
-                    <PostsList posts={posts}/>
+                        <PostsList posts={posts}/>
                     }   
                 </div>
                 ) }

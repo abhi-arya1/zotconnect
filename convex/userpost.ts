@@ -68,6 +68,87 @@ export const getPostsMadeBy = query({
         }
     })
 
+export const addApplicant = mutation({
+    args: {
+        userId: v.string(), 
+        title: v.string(),
+        applicantId: v.string()
+    },
+    handler: async (context, args) => {
+        const identity = await context.auth.getUserIdentity(); 
+
+        if (!identity) {
+            throw new Error("Not Authenticated");
+        }
+
+        const userId = identity.subject; 
+
+        const post = await context.db
+        .query("userpost")
+        .filter(q => q.eq(q.field("userId"), args.userId))
+        .filter(q => q.eq(q.field("title"), args.title))
+        .first()
+
+        if(!post) { throw new Error("No Post!") }
+
+        const docId = post?._id;
+
+        let applications = post.applications || [];
+        applications.push(args.applicantId);
+
+        const document = await context.db.patch(docId, {
+            applications: applications
+        });
+
+        return document;
+    }
+})
+
+export const getApplicantsByName = query({
+    args: {
+        userId: v.string(), 
+        title: v.string(),
+    },
+    handler: async (context, args) => {
+        const identity = await context.auth.getUserIdentity(); 
+
+        if (!identity) {
+            throw new Error("Not Authenticated");
+        }
+
+        const post = await context.db
+            .query("userpost")
+            .filter(q => q.eq(q.field("userId"), args.userId))
+            .filter(q => q.eq(q.field("title"), args.title))
+            .first();
+
+        if (!post) {
+            throw new Error("No Post!");
+        }
+
+        if (!post.applications || post.applications.length === 0) {
+            return []; 
+        }
+
+        let users = [];
+        for (let applicantId of post.applications) {
+            let user = await context.db
+                .query("user")
+                .filter(q => q.eq(q.field("userId"), applicantId))
+                .first();
+            if (user) {
+                users.push([user.name, user.userId]);
+            }
+        }
+
+        console.log(users)
+
+        return users;
+    }
+});
+
+
+
 
 export const getPostsByUser = query({
     args: {

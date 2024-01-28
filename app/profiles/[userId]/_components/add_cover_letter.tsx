@@ -48,7 +48,7 @@ export function CoverLetterForm({ onFormSubmit }: TextareaFormProps) {
           name="post"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="pl-2">Add Cover Letter</FormLabel>
+              <FormLabel className="pl-2">Update Cover Letter</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="To whom it may concern..."

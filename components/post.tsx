@@ -1,10 +1,12 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from './ui/button';
 import { useUser } from '@clerk/clerk-react';
-import { useQuery } from 'convex/react';
+import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
+import { query } from '@/convex/_generated/server';
+import { ConfirmModal } from './modals/confirm_modal';
 
 interface IPost {
     title: string;
@@ -16,6 +18,7 @@ interface IPost {
     targetSkills: string[];
     targetYears: string[];
     userId: string;
+    applications?: string[];
 }
 
 interface PostProps {
@@ -28,9 +31,22 @@ interface PostsListProps {
 
 const Post = ({ post }: PostProps) => {
     const { user } = useUser();
+    const [inApplicants, setInApplicants] = useState(false);
+    const addApplicant = useMutation(api.userpost.addApplicant);
     const userData = useQuery(api.user.getByUserId, {
         userId: user?.id || "Error"
     });
+    const postApplications = useQuery(api.userpost.getApplicantsByName, {
+        userId: post.userId, 
+        title: post.title,
+    })
+
+    useEffect(() => {
+        if (post.applications?.includes(user?.id || "err")) {
+            setInApplicants(true);
+        }
+    }, [post.applications, user?.id]);
+    
 
     return (
         <div>
@@ -53,11 +69,41 @@ const Post = ({ post }: PostProps) => {
                         Refer A Student
                     </Button>
                 ) : (
-                    <Button onClick={() => {window.open(`mailto:${post.email}`)}}>
-                        Apply Now
+                    <div>
+                    {!inApplicants &&
+                    <ConfirmModal 
+                    title="Are You Sure?"
+                    description="Applying to a Job is Irreversible"
+                    onConfirm={() => {
+                        addApplicant({
+                        userId: post.userId,
+                        title: post.title,
+                        applicantId: user?.id || "Err",
+                    })}}>
+                    <Button>
+                        {inApplicants ? (
+                            <span>Applied!</span>
+                        ) : (
+                            <span>Apply Now</span>
+                        )}
                     </Button>
+                    </ConfirmModal>
+                    }
+                    {inApplicants &&
+                    <Button variant="outline" className="dark:hover:bg-black hover:bg-white cursor-default">
+                        Applied
+                    </Button>}
+                    </div>
                 )}
             </div>
+            {userData?.userType === "PROF" && postApplications?.length !== 0 &&
+                <div className="pt-4">
+                    <h1 className="underline">Application Profiles</h1>
+                   {postApplications?.map((userTuple) => (
+                        <li key={userTuple[0]}><a href={`/profiles/${userTuple[1]}`}>{userTuple[0]}</a></li>
+                   ))}
+                </div>
+            }
         </div>
         <div className="pb-10"></div>
         </div>
