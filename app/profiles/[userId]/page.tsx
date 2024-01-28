@@ -26,6 +26,7 @@ import * as z from "zod"
 import { Spinner } from "@/components/spinner";
 import MarkdownContent from "@/components/render_markdown";
 import { ResumeForm } from "./_components/add_resume";
+import PostsList from "@/components/post";
 
 const STUDENT = "STUDENT"
 const PROF = "PROF"
@@ -49,6 +50,10 @@ const ProfilePage = () => {
     const userData = useQuery(api.user.getByUserId, {
         userId: params.userId || "Error"
     });
+
+    const posts = useQuery(api.userpost.getPostsMadeBy, {
+        userId: userData?.userId || "Err"
+    })
 
     const isYourPage = user?.id === params.userId
     const userType = userData?.userType
@@ -125,7 +130,7 @@ const ProfilePage = () => {
             <Sidebar />
             <div className="fixed top-0 p-4 right-0"><ModeToggle /></div>
         <div className="flex flex-row">
-            <div className="flex flex-col items-left justify-left pl-48 pt-20">
+            <div className="flex flex-col items-left justify-left pl-48 pt-20 max-w-[750px]">
                 <div className="bg-gray-300 dark:bg-neutral-700 p-6 pr-7 flex flex-row w-30 h-30 items-center justify-between rounded-3xl">
                     <div className="flex flex-col">
                         {isYourPage && <span className="pb-3">Welcome, </span>}
@@ -142,7 +147,7 @@ const ProfilePage = () => {
                     </div>
                 </div>
                 <div className="pt-5"></div>
-                { userData?.resume_url && (
+                { userData?.resume_url && (isYourPage || userType === "PROF") && (
                 <div className="flex flex-row gap-x-3">
                     <div>
                     <AlertDialog>
@@ -190,39 +195,56 @@ const ProfilePage = () => {
                     </div>
                 )}
                 <div className="pt-5"></div>
-                    <div className="bg-gray-300 dark:bg-neutral-700 p-6 max-w-[500px] rounded-3xl text-wrap break-words">
-                        <b>Bio: </b>{userData?.bio}
+                    <div className="flex flex-col bg-gray-300 dark:bg-neutral-700 p-6 rounded-3xl text-wrap break-words whitespace-break-spaces">
+                        <b className="pb-2">Bio: </b>
+                        <span>{userData?.bio}</span>
                     </div>
                 <div className="pt-5"></div>
-                { userType === STUDENT ? (
+                { userData?.cover_letter && (userType === PROF || isYourPage) &&
+                <div>
+                <div className="flex flex-col bg-gray-300 dark:bg-neutral-700 p-6 rounded-3xl text-wrap break-words whitespace-break-spaces">
+                    <b className="pb-2">Cover Letter:</b>
+                    <span>{userData?.cover_letter}</span>
+                </div>
+                <div className="pb-5"></div>
+                </div>
+                }
+                {userType === 'STUDENT' && (
                     <div>
-                        <div className="flex flex-row gap-x-2">
+                        <div className="flex flex-row gap-x-2 text-wrap">
                             {userData?.skills?.map(skill => (
-                                <div key={skill} className="bg-gray-300 text-muted-foreground dark:bg-neutral-700 p-3 max-w-[500px] rounded-xl text-wrap break-words">
+                                <div key={skill} className="bg-gray-300 text-muted-foreground dark:bg-neutral-700 p-3 rounded-xl">
                                     {skill}
                                 </div>
                             ))}
                         </div>
-                        <div>
-                            <CoverLetterForm
-                                onFormSubmit={onCLSubmit}
-                            />
-                            <div className="flex flex-row justify-end items-left pt-2">
-                            <Button onClick={() => {reviewCLWithAI()}}>
-                                <Sparkles className="h-7 w-7 pr-2" />Review with AI
-                            </Button>
+                        {isYourPage &&
+                            <div>
+                                <CoverLetterForm onFormSubmit={onCLSubmit} />
+                                <div className="flex flex-row justify-end items-left pt-2 pb-10">
+                                    <Button onClick={() => {reviewCLWithAI()}}>
+                                        <Sparkles className="h-7 w-7 pr-2" />Review with AI
+                                    </Button>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
-                    ) : (
-                        <div>
-                        </div>
-                    )
-                }
+                )}
             </div>
-            <div className="pt-24 pl-36 pr-36 pb-24 overflow-scroll">
-                {CLloading && <div className="flex flex-row items-center justify-center gap-x-2"><Sparkles /> Gemini is Loading...<Spinner size="lg" /></div>}
-                {!CLloading && <div><MarkdownContent markdown={review}/></div>}
+            <div className="pl-36 pr-36 pb-24 overflow-scroll">
+                {userType === STUDENT ? (
+                <div className="pt-20">
+                {CLloading && <div className="flex flex-row items-center justify-center gap-x-2 pt-5"><Sparkles /> Gemini is Loading...<Spinner size="lg" /></div>}
+                {!CLloading && review && <div className="whitespace-break-spaces outline-double outline-muted-foreground p-10 rounded-xl"><MarkdownContent markdown={review}/></div>}
+                </div>
+                ) : (
+                <div className="pt-20">
+                    <h1 className="font-bold text-3xl pb-8">{userData?.name}&apos;s Job Postings</h1>
+                    {posts && 
+                    <PostsList posts={posts}/>
+                    }   
+                </div>
+                ) }
             </div>
         </div>
         </div>

@@ -39,6 +39,35 @@ export const createPost = mutation({
     }
 })
 
+export const getPostsMadeBy = query({
+    args: { 
+        userId: v.string(),
+    },
+    handler: async(ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new Error("Not Authenticated");
+        }
+
+        const user = await ctx.db
+            .query("user")
+            .filter(q => q.eq(q.field("userId"), args.userId))
+            .first(); 
+
+        if (!user) {
+            return;
+        }
+
+        const posts = await ctx.db
+            .query("userpost")
+            .filter(q => q.eq(q.field("userId"), args.userId))
+            .collect()
+
+        return posts
+        }
+    })
+
 
 export const getPostsByUser = query({
     args: {
