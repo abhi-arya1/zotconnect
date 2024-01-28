@@ -5,7 +5,7 @@ import { TextareaForm } from "./_components/post_info";
 import { toast } from "@/components/ui/use-toast";
 import { InputWithButton } from "./_components/post_input";
 import { useState } from "react";
-import { CheckCircle, XCircle } from "lucide-react";
+import { ArrowBigLeft, ArrowBigLeftDash, CheckCircle, HomeIcon, MoveLeft, X, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConfirmModal } from "@/components/modals/confirm_modal";
 import { useMutation, useQuery } from "convex/react";
@@ -83,114 +83,125 @@ const NewPostPage = () => {
 
 
 	return (
-	<div className="h-full flex flex-col relative">
-		<div className="relative flex flex-col justify-center items-center">
-			<div className="pt-36 text-shadow font-bold text-3xl relative z-10" >
-				Let&apos;s find your ideal hire, <span className="text-[#2563eb] dark:text-[#0390fc]">Professor {user?.lastName}</span>!
-				<div className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[600px] h-8 bg-gradient-to-r from-customDarkBlue to-customLightBlue blur-2xl rounded-full z-[-50]"></div>
-			</div>
-			<div className="pt-20"></div>
-			<InputWithButton 
-				onInputSubmit={(value) => {setTitle(value)}}
-				onAddToList={(value) => {}}
-				buttonName="Save"
-				placeholder="Job Title"
-				clearInputOnAdd={false}
-			/>
-
-			<TextareaForm onFormSubmit={(value) => {
-				setDesc(value.bio);
-				toast({
-					title: "Saved Job Description"
-				})}} 
-			/>
-			</div>
-
-			<div className="flex flex-col items-center justify-center pt-10 pb-10">
-				<InputWithButton  
-					onInputSubmit={(value) => {}}
-					onAddToList={(value) => addMajor(value)}
-					buttonName="Add"
-					placeholder="Recommended Majors (NO Abbrev.)"
-					clearInputOnAdd={true}
+		<div className="h-full flex flex-col relative">
+			<div className="relative flex flex-col justify-center items-center">
+				<div className="fixed top-0 left-0 p-8">
+					<ConfirmModal
+						onConfirm={() => {router.push('/posts')}}
+						title="Are you Sure?"
+						description="You cannot save your changes if you leave this page"
+					>
+						<Button variant="destructive" className="">
+							<MoveLeft className="h-9 w-9" />
+						</Button>
+					</ConfirmModal>
+				</div>
+				<div className="pt-36 text-shadow font-bold text-3xl relative z-10" >
+					Let&apos;s find your ideal hire, <span className="text-[#2563eb] dark:text-[#0390fc]">Professor {user?.lastName}</span>!
+					<div className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[600px] h-8 bg-gradient-to-r from-customDarkBlue to-customLightBlue blur-2xl rounded-full z-[-50]"></div>
+				</div>
+				<div className="pt-20"></div>
+				<InputWithButton 
+					onInputSubmit={(value) => {setTitle(value)}}
+					onAddToList={(value) => {}}
+					buttonName="Save"
+					placeholder="Job Title"
+					clearInputOnAdd={false}
 				/>
-				{majors.length !== 0 ? (
-					<div className="flex flex-wrap max-w-[400px] text-gray-200 dark:text-muted-foreground items-center justify-center pt-2">
-						{majors.map(major => (
-							<button key={major} onClick={() => removeMajor(major)} className="flex flex-row m-1 items-center bg-slate-600 p-2 pl-3 pr-3 rounded-lg">
-							{major} <XCircle className="pl-1 h-5 w-5" />
-							</button>
-						))}
-					</div>
-				) : (
-					<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
-						<i>Add Majors</i>
-					</div>
-				)}
-				<div className="pt-10"></div>
-				<InputWithButton  
-					onInputSubmit={(value) => {}}
-					onAddToList={(value) => {addSkill(value)}}
-					buttonName="Add"
-					placeholder="Recommended Skills"
-					clearInputOnAdd={true}
+
+				<TextareaForm onFormSubmit={(value) => {
+					setDesc(value.bio);
+					toast({
+						title: "Saved Job Description"
+					})}} 
 				/>
-				{studentSkills.length !== 0 ? (
-					<div className="flex flex-wrap max-w-[400px] text-gray-200 dark:text-muted-foreground items-center justify-center pt-2">
-						{studentSkills.map(skill => (
-							<button key={skill} onClick={() => removeSkill(skill)} className="flex flex-row m-1 items-center bg-slate-600 p-2 pl-3 pr-3 rounded-lg">
-							{skill} <XCircle className="pl-1 h-5 w-5" />
-							</button>
-						))}
-					</div>
-				) : (
-					<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
-						<i>Add Skills</i>
-					</div>
-				)}
-				<div className="pt-10"></div>
-				<InputWithButton  
-					onInputSubmit={(value) => {}}
-					onAddToList={(value) => {addYear(value)}}
-					buttonName="Add"
-					placeholder="Recommended Grad. Years"
-					clearInputOnAdd={true}
-				/>
-				{years.length !== 0 ? (
-					<div className="flex flex-wrap max-w-[400px] text-gray-200 dark:text-muted-foreground items-center justify-center pt-2">
-						{years.map(year => (
-							<button key={year} onClick={() => removeYear(year)} className="flex flex-row m-1 items-center bg-slate-600 p-2 pl-3 pr-3 rounded-lg">
-							{year} <XCircle className="pl-1 h-5 w-5" />
-							</button>
-						))}
-					</div>
-				) : (
-					<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
-						<i>Add Graduation Years (e.g. 2024, 2025, etc.)</i>
-					</div>
-				)}
-			</div>
+				</div>
 
-			<div className="flex items-center justify-center pb-10">
-				<p>Please complete and <span><i className="text-blue-400 font-bold">save</i></span> all Fields to Submit</p>
-			</div>
+				<div className="flex flex-col items-center justify-center pt-10 pb-10">
+					<InputWithButton  
+						onInputSubmit={(value) => {}}
+						onAddToList={(value) => addMajor(value)}
+						buttonName="Add"
+						placeholder="Recommended Majors (NO Abbrev.)"
+						clearInputOnAdd={true}
+					/>
+					{majors.length !== 0 ? (
+						<div className="flex flex-wrap max-w-[400px] text-gray-200 dark:text-muted-foreground items-center justify-center pt-2">
+							{majors.map(major => (
+								<button key={major} onClick={() => removeMajor(major)} className="flex flex-row m-1 items-center bg-slate-600 p-2 pl-3 pr-3 rounded-lg">
+								{major} <XCircle className="pl-1 h-5 w-5" />
+								</button>
+							))}
+						</div>
+					) : (
+						<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
+							<i>Add Majors</i>
+						</div>
+					)}
+					<div className="pt-10"></div>
+					<InputWithButton  
+						onInputSubmit={(value) => {}}
+						onAddToList={(value) => {addSkill(value)}}
+						buttonName="Add"
+						placeholder="Recommended Skills"
+						clearInputOnAdd={true}
+					/>
+					{studentSkills.length !== 0 ? (
+						<div className="flex flex-wrap max-w-[400px] text-gray-200 dark:text-muted-foreground items-center justify-center pt-2">
+							{studentSkills.map(skill => (
+								<button key={skill} onClick={() => removeSkill(skill)} className="flex flex-row m-1 items-center bg-slate-600 p-2 pl-3 pr-3 rounded-lg">
+								{skill} <XCircle className="pl-1 h-5 w-5" />
+								</button>
+							))}
+						</div>
+					) : (
+						<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
+							<i>Add Skills</i>
+						</div>
+					)}
+					<div className="pt-10"></div>
+					<InputWithButton  
+						onInputSubmit={(value) => {}}
+						onAddToList={(value) => {addYear(value)}}
+						buttonName="Add"
+						placeholder="Recommended Grad. Years"
+						clearInputOnAdd={true}
+					/>
+					{years.length !== 0 ? (
+						<div className="flex flex-wrap max-w-[400px] text-gray-200 dark:text-muted-foreground items-center justify-center pt-2">
+							{years.map(year => (
+								<button key={year} onClick={() => removeYear(year)} className="flex flex-row m-1 items-center bg-slate-600 p-2 pl-3 pr-3 rounded-lg">
+								{year} <XCircle className="pl-1 h-5 w-5" />
+								</button>
+							))}
+						</div>
+					) : (
+						<div className="flex flex-col text-muted-foreground items-center justify-center pt-2">
+							<i>Add Graduation Years (e.g. 2024, 2025, etc.)</i>
+						</div>
+					)}
+				</div>
+
+				<div className="flex items-center justify-center pb-10">
+					<p>Please complete and <span><i className="text-blue-400 font-bold">save</i></span> all Fields to Submit</p>
+				</div>
 
 
-			{ majors.length !== 0 && years.length !== 0 && studentSkills.length !== 0 && title && desc &&
-				<div className="flex items-center justify-center pt-10 pb-20">
-                    <ConfirmModal
-                        onConfirm={handleSubmit}
-                        title="Confirm Post"
-                        description="Are you sure you want to make this Job Post?"
-                    >
-                        <Button className="p-7 text-lg">
-                            Submit <CheckCircle className="pl-2" />
-                        </Button>
-                    </ConfirmModal>
-                </div>
-			}
+				{ majors.length !== 0 && years.length !== 0 && studentSkills.length !== 0 && title && desc &&
+					<div className="flex items-center justify-center pt-10 pb-20">
+						<ConfirmModal
+							onConfirm={handleSubmit}
+							title="Confirm Post"
+							description="Are you sure you want to make this Job Post?"
+						>
+							<Button className="p-7 text-lg">
+								Submit <CheckCircle className="pl-2" />
+							</Button>
+						</ConfirmModal>
+					</div>
+				}
 
-	</div>
+		</div>
 	)
 }
 
