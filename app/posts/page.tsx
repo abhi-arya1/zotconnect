@@ -86,7 +86,7 @@ const PostsPage = () => {
                     </div>
                     Add Resume
                 </DropdownMenuItem>
-                <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {router.push('/posts/new_cover_letter')}}>
+                <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {router.push(`/profiles/${user?.id}`)}}>
                     <div className="pr-2">
                         <PencilLine className="h-4 w-4" />
                     </div>

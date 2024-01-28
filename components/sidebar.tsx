@@ -52,7 +52,7 @@ const Sidebar: React.FC = () => {
                 </Button>
             </div>
             <div className="flex items-center justify-center pb-5">
-                <Button variant='ghost' className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer" onClick={() => {router.push('/posts/new_cover_letter')}}>
+                <Button variant='ghost' className="hover:bg-gray-300 dark:hover:bg-neutral-700 hover:cursor-pointer" onClick={() => {router.push(`/profiles/${userData?.userId}`)}}>
                     <NotepadText className="pt-2 h-9 w-9" />
                 </Button>
             </div>
