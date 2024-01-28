@@ -25,8 +25,7 @@ const TwoColumnSectionRightImg = ({ description, title }: TwoColSecProps) => {
         </div>
 
         <div className="w-full md:w-1/2 px-4 flex justify-center items-center">
-          {/* <TiltImage /> */}
-          <Tilt className="parallax-effect-glare-scale mt-5 rounded-sm" style={{ height: '300px', backgroundColor: 'darkgrey' }} glareEnable={true} glareMaxOpacity={0.45} scale={1.02}>
+          <Tilt className="parallax-effect-glare-scale mt-5 rounded-sm drop-shadow-2xl" style={{ height: '300px', backgroundColor: 'darkgrey' }} glareEnable={true} glareMaxOpacity={0.45} scale={1.02} tiltAngleYInitial={20} tiltEnable={true}>
             <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '20px' }}>
                 <img className='drop-shadow-2xl'style={{width: '500px', height: '100px'}} src="zotconnect.png" alt="tilt-img" />
             </div>

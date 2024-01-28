@@ -52,6 +52,7 @@
     "remark-html": "^16.0.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "tw-merge": "^0.0.1-alpha.3",
     "typewriter-effect": "^2.21.0",
     "vaul": "^0.8.9",
     "zod": "^3.22.4",
