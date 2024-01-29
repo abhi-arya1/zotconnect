@@ -67,11 +67,7 @@ const Post = ({ post }: PostProps) => {
                     <div><b className="text-muted-foreground font-normal">Preferred Years:</b> {post.targetYears.join(', ')}</div>
                 </div>
                 { userData?.userType === "PROF" ? (
-                    <Link href={`mailto:${post.email}`}>
-                        <Button asChild>
-                            Refer A Student
-                        </Button>
-                    </Link>
+                    <a role="button" className="bg-primary py-2 px-3 rounded-lg text-white dark:text-black hover:bg-primary/90 transition-colors" href={`mailto:${post.email}`}>Refer A Student</a>
                 ) : (
                     <div>
                     {!inApplicants &&

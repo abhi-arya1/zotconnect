@@ -10,7 +10,7 @@ const Footer = () => {
         <p className="text-sm">&copy; {new Date().getFullYear()} ZotConnect</p>
         <div className="flex space-x-3 items-center justify-center">
 
-        <Button variant="outline" onClick={() => {window.open("https://google.com", "_blank")}}>
+        <Button variant="outline" onClick={() => {window.open("https://devpost.com/software/zotconnect-g6jhme", "_blank")}}>
             <span className="pr-2">DevPost</span><FunctionSquare className="h-4 w-4"/> 
           </Button>
           <Button variant="outline" onClick={() => {window.open("https://github.com/abhi-arya1/zotconnect", "_blank")}}>

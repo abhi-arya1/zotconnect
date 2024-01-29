@@ -52,10 +52,6 @@ const LandingPage = () => {
             }}
         />
 
-        {/* TODO: ADD LARGE SIGN UP HERE: 
-        <Button >
-
-        </Button> */}
         <TwoColumnSectionLeftImg title='Connections Tailored to You' description='Discover a world of connections and opportunities that align with your interests and experiences.'/>
         <TwoColumnSectionRightImg title='Get Your Resume Vetted' description='Harness the power of trained AI technology to get valuable feedback on your resume and cover letter.'/>
         <TwoColumnSectionLeftImgSecond title='Tools for Professors' description='Create precise job listings and find your ideal candidates.' />
@@ -70,12 +66,12 @@ const LandingPage = () => {
                 <p>ZotConnect focuses mainly on student and professor relations while other platforms, such as LinkedIn, focus on recruitment for corporate jobs. This allows for a platform built <b> specifically </b> for communication!</p>
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-2">
+            {/* FIXME: Add Proper Video <AccordionItem value="item-2">
               <AccordionTrigger className='font-semibold'>How do you use ZotConnect efficiently?</AccordionTrigger>
               <AccordionContent className="flex justify-start">
               <p>Here is a link to our YouTube demonstration that showcases all the features and how to use them: <a className="underline" href="https://www.youtube.com/watch?v=QFD8afHcP_4" target="_blank">youtube.com/watch?v=QFD8afHcP_4</a></p>
               </AccordionContent>
-            </AccordionItem>
+            </AccordionItem> */}
             <AccordionItem value="item-3">
               <AccordionTrigger className='font-semibold'>Is my data secure with ZotConnect?</AccordionTrigger>
               <AccordionContent className="flex items-left">
