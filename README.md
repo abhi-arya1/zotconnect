@@ -16,6 +16,7 @@
 - [DevPost](https://devpost.com/software/zotconnect-g6jhme)
 - [GitHub](https://github.com/abhi-arya1/zotconnect)
 - [View Site](https://zotconnect.vercel.app)
+- [View the IrvineHacks Feature Article on UCI's ICS Website](https://ics.uci.edu/2024/02/14/13-teams-recognized-at-irvinehacks-2024/)
 
 ## Development Team
 
