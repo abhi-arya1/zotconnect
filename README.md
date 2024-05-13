@@ -66,3 +66,6 @@ ZotConnect operates with NextJS on the Vercel Platform for deployment, and is en
 - Keep tabs on our AI Model to make sure it’s learning accurately and safely.
 - Add option to delete job postings and option to withdraw application from a job.
 - Improve user experience on a vast range of platforms.
+
+## Reproduction
+While made with open source intentions, and the possibility for future contribution, Zotconnect is currently not open source. Please read our Software [License](./LICENSE.md) before attempting to reproduce this project.
